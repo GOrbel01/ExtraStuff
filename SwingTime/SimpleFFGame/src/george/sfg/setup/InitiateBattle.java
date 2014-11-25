@@ -30,6 +30,7 @@ public class InitiateBattle {
         player.equipWeapon(weaponSelect.getWeapon("Simple Sword"));
         enemy.getWeapon().testSetName("King Kong");
         System.out.println("Player Wep Name: " + player.getWeapon().getName());
+        System.out.println("TEST:" + player.getWeapon().getPrimaryStatBonus());
         System.out.println("Enemy Wep Name: " + enemy.getWeapon().getName());
     }
 }

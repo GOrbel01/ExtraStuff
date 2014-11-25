@@ -28,6 +28,12 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
         return bonusAttack;
     }
 
+    public void testSame()
+    {
+        
+    }
+
+    //TestSame
     protected Object clone() throws CloneNotSupportedException
     {
             try
