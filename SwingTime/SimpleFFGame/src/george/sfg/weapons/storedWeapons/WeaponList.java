@@ -52,9 +52,17 @@ public class WeaponList {
         return null;
     }
 
-    public List getList()
+    public List<Weapon> getList()
     {
         return weaponList;
+    }
+
+    public void printList()
+    {
+        for (int i = 0; i < weaponList.size(); i++)
+        {
+            System.out.println(weaponList.get(i).getName());
+        }
     }
 
 }

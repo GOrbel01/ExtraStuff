@@ -1,5 +1,7 @@
 package george.sfg.characters;
 
+import george.sfg.stat.RageImpl;
+import george.sfg.stat.Resource;
 import george.sfg.weapons.Weapon;
 
 /**
@@ -8,13 +10,13 @@ import george.sfg.weapons.Weapon;
 public class StrengthFighterImpl extends AbstractFighter implements Fighter {
 
     private int strength;
-    private int energy;
+    private Resource energy;
 
-    public StrengthFighterImpl(String name, int health, int speed, int strength, int energy)
+    public StrengthFighterImpl(String name, int health, int speed, int strength)
     {
         super(name, health, speed);
         this.strength = strength;
-        this.energy = energy;
+        this.energy = new RageImpl();
         this.setupAttack();
     }
 
@@ -28,14 +30,9 @@ public class StrengthFighterImpl extends AbstractFighter implements Fighter {
         this.strength = strength;
     }
 
-    public int getResource()
+    public Resource getResource()
     {
         return energy;
-    }
-
-    public void setResource(int energy)
-    {
-        this.energy = energy;
     }
 
     public void equipWeapon(Weapon weapon)

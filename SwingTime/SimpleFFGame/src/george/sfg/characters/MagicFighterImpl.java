@@ -1,5 +1,7 @@
 package george.sfg.characters;
 
+import george.sfg.stat.ManaImpl;
+import george.sfg.stat.Resource;
 import george.sfg.weapons.Weapon;
 
 /**
@@ -8,13 +10,13 @@ import george.sfg.weapons.Weapon;
 public class MagicFighterImpl extends AbstractFighter implements Fighter {
 
     private int magic;
-    private int mana;
+    private Resource mana;
 
     public MagicFighterImpl(String name, int health, int speed, int magic, int mana)
     {
         super(name, health, speed);
         this.magic = magic;
-        this.mana = mana;
+        this.mana = new ManaImpl();
         setupAttack();
     }
 
@@ -28,12 +30,7 @@ public class MagicFighterImpl extends AbstractFighter implements Fighter {
         this.magic = stat;
     }
 
-    public void setResource(int amount)
-    {
-        this.mana = amount;
-    }
-
-    public int getResource()
+    public Resource getResource()
     {
         return mana;
     }

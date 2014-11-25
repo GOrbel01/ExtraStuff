@@ -4,7 +4,7 @@ package george.sfg.weapons;
  * Created by Cloud on 23/11/2014.
  */
 public abstract class AbstractWeapon implements Weapon, Cloneable {
-    private String name;
+    private final String name;
     private double bonusAttack;
 
     public AbstractWeapon(String name, double attack)
@@ -16,11 +16,6 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
     public String getName()
     {
         return name;
-    }
-
-    public void testSetName(String newName)
-    {
-        this.name = newName;
     }
 
     public double getBonusAttack()

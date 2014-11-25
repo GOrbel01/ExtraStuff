@@ -9,8 +9,6 @@ public interface Weapon {
 
     int getPrimaryStatBonus();
 
-    void testSetName(String newName);
-
     double getBonusAttack();
 
     Object copy();

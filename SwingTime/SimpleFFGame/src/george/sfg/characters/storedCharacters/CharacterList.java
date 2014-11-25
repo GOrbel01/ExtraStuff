@@ -21,8 +21,8 @@ public class CharacterList {
 
     public void addToList()
     {
-        fighterList.add(new StrengthFighterImpl("Cloud", 1500, 40, 50, 100));
-        fighterList.add(new StrengthFighterImpl("Squall", 1450, 45, 60, 100));
+        fighterList.add(new StrengthFighterImpl("Cloud", 1500, 40, 50));
+        fighterList.add(new StrengthFighterImpl("Squall", 1450, 45, 60));
         fighterList.add(new MagicFighterImpl("Kuja", 1400, 50, 65, 100));
         fighterList.add(new MagicFighterImpl("Edea", 1350, 60, 70, 100));
     }
@@ -41,7 +41,7 @@ public class CharacterList {
         return null;
     }
 
-    public List getList()
+    public List<Fighter> getList()
     {
         return fighterList;
     }
