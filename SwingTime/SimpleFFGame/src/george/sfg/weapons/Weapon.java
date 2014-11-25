@@ -5,10 +5,14 @@ package george.sfg.weapons;
  */
 public interface Weapon {
 
-    public String getName();
+    String getName();
 
-    public int getPrimaryStatBonus();
+    int getPrimaryStatBonus();
 
-    public double getBonusAttack();
+    void testSetName(String newName);
+
+    double getBonusAttack();
+
+    Object copy();
 
 }

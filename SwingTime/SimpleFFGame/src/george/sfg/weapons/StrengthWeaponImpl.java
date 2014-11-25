@@ -3,7 +3,7 @@ package george.sfg.weapons;
 /**
  * Created by Cloud on 23/11/2014.
  */
-public class StrengthWeaponImpl extends WeaponImpl implements Weapon {
+public class StrengthWeaponImpl extends AbstractWeapon implements Weapon {
 
     private int bonusStrength;
 
@@ -17,4 +17,18 @@ public class StrengthWeaponImpl extends WeaponImpl implements Weapon {
     {
         return bonusStrength;
     }
+
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+            return super.clone();
+        }
+        catch(CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
 }
