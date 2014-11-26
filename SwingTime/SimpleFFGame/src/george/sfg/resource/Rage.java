@@ -6,4 +6,5 @@ package george.sfg.resource;
 public interface Rage extends Resource {
 
     void regenerate();
+
 }

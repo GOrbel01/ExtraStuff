@@ -7,7 +7,7 @@ import george.sfg.weapons.Weapon;
 /**
  * Created by Cloud on 23/11/2014.
  */
-public class StrengthFighterImpl extends AbstractFighter implements Fighter {
+public class StrengthFighterImpl extends AbstractFighter implements StrengthFighter {
 
     private int strength;
     private Rage rage;

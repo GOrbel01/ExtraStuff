@@ -2,6 +2,7 @@ package george.sfg.characters.storedCharacters;
 
 import george.sfg.characters.Fighter;
 import george.sfg.characters.MagicFighterImpl;
+import george.sfg.characters.StrengthFighter;
 import george.sfg.characters.StrengthFighterImpl;
 
 import java.util.ArrayList;

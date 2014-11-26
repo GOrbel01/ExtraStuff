@@ -10,24 +10,33 @@ import george.sfg.characters.StrengthFighterImpl;
  */
 public class Combatant {
     private final Fighter fighter;
+    private final String type;
     private String tag;
     private final boolean isPlayer;
     private static int playerCount = 0;
     private static int enemyCount = 0;
 
-    public Combatant(MagicFighter newFighter, boolean playerCheck)
+//    public Combatant(MagicFighter newFighter, boolean playerCheck)
+//    {
+//        fighter = newFighter;
+//        setupTag(playerCheck);
+//        isPlayer = playerCheck;
+//    }
+
+    public Combatant(Fighter newFighter, boolean playerCheck)
     {
         fighter = newFighter;
         setupTag(playerCheck);
+        type = ""+newFighter.getPrimaryStat();
         isPlayer = playerCheck;
     }
 
-    public Combatant(StrengthFighter newFighter, boolean playerCheck)
-    {
-        fighter = newFighter;
-        setupTag(playerCheck);
-        isPlayer = playerCheck;
-    }
+//    public Combatant(StrengthFighter newFighter, boolean playerCheck)
+//    {
+//        fighter = newFighter;
+//        setupTag(playerCheck);
+//        isPlayer = playerCheck;
+//    }
 
     public void setupTag(boolean pCheck)
     {
@@ -46,6 +55,16 @@ public class Combatant {
     public Fighter getFighter()
     {
         return fighter;
+    }
+
+    public StrengthFighter getSFighter()
+    {
+        return (StrengthFighter) fighter;
+    }
+
+    public MagicFighter getMFighter()
+    {
+        return (MagicFighter) fighter;
     }
 
     public String getTag()

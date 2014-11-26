@@ -9,5 +9,5 @@ import george.sfg.resource.Resource;
  */
 public interface MagicFighter extends Fighter {
 
-    Mana getResource();
+//    Mana getResource();
 }

@@ -1,5 +1,7 @@
 package george.sfg.setup;
 
+import george.sfg.characters.MagicFighter;
+import george.sfg.characters.StrengthFighter;
 import george.sfg.characters.storedCharacters.CharacterList;
 import george.sfg.setup.combatant.Combatant;
 import george.sfg.setup.combatant.CombatantList;

@@ -8,7 +8,7 @@ import george.sfg.weapons.Weapon;
 /**
  * Created by Cloud on 23/11/2014.
  */
-public class MagicFighterImpl extends AbstractFighter implements Fighter {
+public class MagicFighterImpl extends AbstractFighter implements MagicFighter {
 
     private int magic;
     private Mana mana;
