@@ -1,7 +1,8 @@
 package george.sfg.characters;
 
-import george.sfg.stat.ManaImpl;
-import george.sfg.stat.Resource;
+import george.sfg.resource.Mana;
+import george.sfg.resource.ManaImpl;
+import george.sfg.resource.Resource;
 import george.sfg.weapons.Weapon;
 
 /**
@@ -10,7 +11,7 @@ import george.sfg.weapons.Weapon;
 public class MagicFighterImpl extends AbstractFighter implements Fighter {
 
     private int magic;
-    private Resource mana;
+    private Mana mana;
 
     public MagicFighterImpl(String name, int health, int speed, int magic, int mana)
     {
@@ -18,6 +19,31 @@ public class MagicFighterImpl extends AbstractFighter implements Fighter {
         this.magic = magic;
         this.mana = new ManaImpl();
         setupAttack();
+    }
+
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+            return super.clone();
+        }
+        catch(CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Fighter copy()
+    {
+        try {
+            return (Fighter) clone();
+        }
+        catch (CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     public int getPrimaryStat()
@@ -30,7 +56,7 @@ public class MagicFighterImpl extends AbstractFighter implements Fighter {
         this.magic = stat;
     }
 
-    public Resource getResource()
+    public Mana getResource()
     {
         return mana;
     }

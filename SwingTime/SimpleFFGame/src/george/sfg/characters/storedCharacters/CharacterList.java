@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Cloud on 23/11/2014.
  */
 public class CharacterList {
-    private List<Fighter> fighterList;
+    private static List<Fighter> fighterList;
 
     public CharacterList()
     {
@@ -39,6 +39,18 @@ public class CharacterList {
             count++;
         }
         return null;
+    }
+
+    public boolean containsFighter(String name)
+    {
+        for (int i = 0; i < fighterList.size(); i++)
+        {
+            if (getFighter(name) != null)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Fighter> getList()

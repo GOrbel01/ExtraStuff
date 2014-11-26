@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Cloud on 23/11/2014.
  */
 public class WeaponList {
-    private List<Weapon> weaponList;
+    private static List<Weapon> weaponList;
 
     public WeaponList()
     {

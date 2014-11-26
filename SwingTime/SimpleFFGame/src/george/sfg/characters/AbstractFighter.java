@@ -5,7 +5,7 @@ import george.sfg.weapons.Weapon;
 /**
  * Created by Cloud on 23/11/2014.
  */
-public abstract class AbstractFighter implements Fighter {
+public abstract class AbstractFighter implements Fighter, Cloneable{
 
     private String name;
     private double attack;
@@ -21,9 +21,43 @@ public abstract class AbstractFighter implements Fighter {
         this.weapon = null;
     }
 
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+            return super.clone();
+        }
+        catch(CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Fighter copy()
+    {
+        try {
+            return (Fighter) clone();
+        }
+        catch (CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public String getName()
     {
-        return this.name;
+        System.out.println("Calling getName()...");
+        try
+        {
+            return this.name;
+        }
+        catch (NullPointerException ex)
+        {
+            ex.printStackTrace();
+        }
+        return "";
     }
 
     public int getHealth()

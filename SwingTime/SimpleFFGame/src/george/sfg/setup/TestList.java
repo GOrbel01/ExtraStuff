@@ -8,7 +8,7 @@ public class TestList {
     public void test()
     {
         CharacterSetup chs = new CharacterSetup();
-        System.out.println(chs.getCombatants().get(0).getFighter().getName());
+//        System.out.println(chs.getCombatantsList().get(0).getFighter().getName());
     }
 
 }

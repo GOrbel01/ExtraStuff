@@ -1,6 +1,7 @@
 package george.sfg.characters;
 
-import george.sfg.stat.Resource;
+import george.sfg.resource.Rage;
+import george.sfg.resource.Resource;
 import george.sfg.weapons.Weapon;
 
 /**
@@ -9,6 +10,8 @@ import george.sfg.weapons.Weapon;
 public interface Fighter {
 
     String getName();
+
+    Fighter copy();
 
     int getHealth();
 
@@ -28,9 +31,9 @@ public interface Fighter {
 
     int getPrimaryStat();
 
-    void setPrimaryStat(int amount);
-
     Resource getResource();
+
+    void setPrimaryStat(int amount);
 
     boolean hasWeaponEquipped();
 

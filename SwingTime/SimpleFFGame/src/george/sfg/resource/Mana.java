@@ -1,4 +1,4 @@
-package george.sfg.stat;
+package george.sfg.resource;
 
 /**
  * Created by Cloud on 25/11/2014.
@@ -6,4 +6,5 @@ package george.sfg.stat;
 public interface Mana extends Resource {
 
     void setMaxValue(int newValue);
+
 }

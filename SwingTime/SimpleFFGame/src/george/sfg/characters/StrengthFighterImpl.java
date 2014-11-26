@@ -1,7 +1,7 @@
 package george.sfg.characters;
 
-import george.sfg.stat.RageImpl;
-import george.sfg.stat.Resource;
+import george.sfg.resource.Rage;
+import george.sfg.resource.RageImpl;
 import george.sfg.weapons.Weapon;
 
 /**
@@ -10,14 +10,39 @@ import george.sfg.weapons.Weapon;
 public class StrengthFighterImpl extends AbstractFighter implements Fighter {
 
     private int strength;
-    private Resource energy;
+    private Rage rage;
 
     public StrengthFighterImpl(String name, int health, int speed, int strength)
     {
         super(name, health, speed);
         this.strength = strength;
-        this.energy = new RageImpl();
+        this.rage = new RageImpl();
         this.setupAttack();
+    }
+
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+            return super.clone();
+        }
+        catch(CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Fighter copy()
+    {
+        try {
+            return (Fighter) clone();
+        }
+        catch (CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     public int getPrimaryStat()
@@ -30,9 +55,9 @@ public class StrengthFighterImpl extends AbstractFighter implements Fighter {
         this.strength = strength;
     }
 
-    public Resource getResource()
+    public Rage getResource()
     {
-        return energy;
+        return rage;
     }
 
     public void equipWeapon(Weapon weapon)
@@ -60,6 +85,6 @@ public class StrengthFighterImpl extends AbstractFighter implements Fighter {
 
     public String toString()
     {
-        return (super.toString() + "\nStrength:" + strength + "\nEnergy:" + energy + weaponToString());
+        return (super.toString() + "\nStrength:" + strength + "\nEnergy:" + rage + weaponToString());
     }
 }
