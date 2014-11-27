@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
@@ -25,10 +26,9 @@ public class CharacterSelectFrame extends JFrame {
 
     private BufferedImage[] images;
 
-    String resDir = "C:" + File.separator + "Users" + File.separator + "Cloud" + File.separator + "Work"
-            + File.separator + "Masters" + File.separator + "PiJ" + File.separator + "GitCode" + File.separator +
-            "ExtraStuff" + File.separator + "SwingTime" + File.separator + "SimpleFFGame" + File.separator + "resource"
-            + File.separator + "Pic0.jpg";
+    File tempFile = new File("");
+    File resDir = new File(tempFile.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
+            "resource");
 
     private JLabel[] nameLabel;
     private JLabel picLabel;
@@ -55,14 +55,16 @@ public class CharacterSelectFrame extends JFrame {
 
         for (int i = 0; i < fighterList.size(); i++)
         {
+//            System.out.println("PD_TEST: " + testFile.getAbsolutePath());
             if (i == 0)
             {
-                try {
-//                    BufferedImage myPicture = ImageIO.read(new File("C:" + File.separator + "Users" + File.separator + "Cloud" +
-//                            File.separator + "Pictures" + File.separator + "Pic.jpg"));
-                    BufferedImage myPicture = ImageIO.read(new File(resDir));
+                try
+                {
+                    System.out.println("PATH: " + resDir.getAbsolutePath() + "Pic0.jpg");
+                    BufferedImage myPicture = ImageIO.read(new File(resDir.getAbsolutePath() + File.separator
+                            + "Pic" + "0" + ".jpg"));
                     picLabel = new JLabel(new ImageIcon(myPicture));
-                    picLabel.setBounds(1200, 850, 42, 42);
+                    picLabel.setBounds(0, 0, 42, 42);
                 }
                 catch (IOException ex)
                 {
