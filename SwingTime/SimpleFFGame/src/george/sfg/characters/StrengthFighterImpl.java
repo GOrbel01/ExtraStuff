@@ -33,6 +33,11 @@ public class StrengthFighterImpl extends AbstractFighter implements StrengthFigh
         }
     }
 
+    public void regenRage()
+    {
+        rage.regenerate();
+    }
+
     public Fighter copy()
     {
         try {

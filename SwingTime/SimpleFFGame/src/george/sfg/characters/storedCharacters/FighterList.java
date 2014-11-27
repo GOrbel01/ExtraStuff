@@ -11,16 +11,16 @@ import java.util.List;
 /**
  * Created by Cloud on 23/11/2014.
  */
-public class CharacterList {
-    private static List<Fighter> fighterList;
+public class FighterList {
+    private List<Fighter> fighterList;
 
-    public CharacterList()
+    public FighterList()
     {
         fighterList = new ArrayList<>();
-        addToList();
+        populateList();
     }
 
-    public void addToList()
+    private void populateList()
     {
         fighterList.add(new StrengthFighterImpl("Cloud", 1500, 40, 50));
         fighterList.add(new StrengthFighterImpl("Squall", 1450, 45, 60));

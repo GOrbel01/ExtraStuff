@@ -2,8 +2,10 @@ package george.sfg.setup;
 
 import java.util.concurrent.*;
 
-import george.sfg.characters.storedCharacters.CharacterList;
 import george.sfg.setup.combatant.CombatantList;
+import george.sfg.userinterface.CharacterSelectFrame;
+
+import javax.swing.*;
 
 /**
  * Created by Cloud on 23/11/2014.
@@ -19,12 +21,14 @@ public class InitiateBattle {
 
     public void launch()
     {
-        ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(5);
-        CharacterSetup chs = new CharacterSetup();
-        CombatantList cList = new CombatantList();
-        chs.setupCharacters();
-//        cList.getCombatantByTag("Player2");
-        System.out.println(cList.getCombatantByTag("Player1").getFighter().getResource());
+//        CharacterSetup chs = new CharacterSetup();
+//        chs.setupCharacters();
+//        System.out.println(chs.getCombatantList().getCombatantByTag("Player1").getFighter().getName());
+        JFrame frame;
+        CharacterSetup charSetup = new CharacterSetup();
+        frame = new CharacterSelectFrame(charSetup.getFighterList().getList(), charSetup);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
 //
     }
 }

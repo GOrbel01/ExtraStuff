@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Squall on 26/11/2014.
  */
 public class CombatantList {
-    private static List<Combatant> combatants = new ArrayList<Combatant>();
+    private List<Combatant> combatants = new ArrayList<Combatant>();
 
     public CombatantList()
     {

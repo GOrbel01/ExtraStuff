@@ -8,4 +8,7 @@ import george.sfg.resource.Rage;
 public interface StrengthFighter extends Fighter {
 
     Rage getResource();
+
+    void regenRage();
+
 }

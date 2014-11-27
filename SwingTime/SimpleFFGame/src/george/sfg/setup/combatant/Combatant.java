@@ -31,6 +31,15 @@ public class Combatant {
         isPlayer = playerCheck;
     }
 
+    public Combatant(Fighter newFighter, String newName, boolean playerCheck)
+    {
+        fighter = newFighter;
+        fighter.setName(newName);
+        setupTag(playerCheck);
+        type = ""+newFighter.getPrimaryStat();
+        isPlayer = playerCheck;
+    }
+
 //    public Combatant(StrengthFighter newFighter, boolean playerCheck)
 //    {
 //        fighter = newFighter;
@@ -57,14 +66,9 @@ public class Combatant {
         return fighter;
     }
 
-    public StrengthFighter getSFighter()
+    public String getType()
     {
-        return (StrengthFighter) fighter;
-    }
-
-    public MagicFighter getMFighter()
-    {
-        return (MagicFighter) fighter;
+        return type;
     }
 
     public String getTag()

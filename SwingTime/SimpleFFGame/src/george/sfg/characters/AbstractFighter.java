@@ -60,6 +60,11 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
         return "";
     }
 
+    public void setName(String newName)
+    {
+        this.name = newName;
+    }
+
     public int getHealth()
     {
         return this.health;

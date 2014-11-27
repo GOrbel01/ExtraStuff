@@ -11,6 +11,8 @@ public interface Fighter {
 
     String getName();
 
+    void setName(String str);
+
     Fighter copy();
 
     int getHealth();
