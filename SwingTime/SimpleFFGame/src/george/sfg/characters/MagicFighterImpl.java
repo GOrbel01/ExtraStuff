@@ -102,7 +102,7 @@ public class MagicFighterImpl extends AbstractFighter implements MagicFighter {
 
     public String toString()
     {
-        return (super.toString() + "\nMagic:" + magic + "\nMana:" + mana + weaponToString());
+        return (super.toString() + "\nMagic:" + magic + "\nMax Mana:" + mana.getMaxValue() + "\n" + weaponToString());
     }
 
 }

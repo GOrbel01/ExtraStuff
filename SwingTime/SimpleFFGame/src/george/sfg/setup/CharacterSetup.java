@@ -33,7 +33,7 @@ public class CharacterSetup implements ActionListener {
 
     public void actionPerformed(ActionEvent event)
     {
-        boolean confirmation = false;
+        boolean confirmation;
         String nameOfPressedButton = event.getActionCommand();
         int indexOfSpace = nameOfPressedButton.indexOf(" ");
         String selectedChar = nameOfPressedButton.substring(indexOfSpace+1, nameOfPressedButton.length());
@@ -47,57 +47,80 @@ public class CharacterSetup implements ActionListener {
 
     public void setSelection(String name)
     {
-        Scanner keyboard = new Scanner(System.in);
         Fighter temp = fList.getFighter(name);
         boolean isDone = false;
+        boolean wantsRename = frame.showDialog("Rename");
         String type = temp.getType();
         String newName = "";
         System.out.println("Rename your Character?");
-        if (frame.showDialog("Rename?"))
+        while (!isDone)
         {
-            while (!isDone)
+            System.out.println("Back Here");
+            if (wantsRename)
             {
                 System.out.println("Enter new Name");
                 newName = frame.showNewNameDialog();
-                if (isValidName(newName))
+                if (newName != null)
                 {
-                    if (type.equals("StrengthUser"))
+                    if (isValidName(newName))
                     {
-                        Fighter playerFighter = new StrengthFighterImpl(temp, newName);
-                        Combatant player = new Combatant(playerFighter, true);
-                        cList.getCombatantsList().add(player);
+                        if (type.equals("StrengthUser"))
+                        {
+                            Fighter playerFighter = new StrengthFighterImpl(temp, newName);
+                            Combatant player = new Combatant(playerFighter, true);
+                            cList.getCombatantsList().add(player);
+                        }
+                        else if (type.equals("MagicUser"))
+                        {
+                            Fighter playerFighter = new MagicFighterImpl(temp, newName);
+                            Combatant player = new Combatant(playerFighter, true);
+                            cList.getCombatantsList().add(player);
+                        }
+                        isDone = true;
                     }
-                    else if (type.equals("MagicUser"))
+                    else
                     {
-                        Fighter playerFighter = new MagicFighterImpl(temp, newName);
-                        Combatant player = new Combatant(playerFighter, true);
-                        cList.getCombatantsList().add(player);
+                        frame.showNewNameDialog();
                     }
-                    isDone = true;
                 }
                 else
                 {
-                    frame.showNewNameDialog();
+                    System.out.println("User Canceled Rename.");
+                    System.out.println("Restarting Selection");
+                    wantsRename = frame.showDialog("Rename?");
                 }
+
+            }
+            else
+            {
+                System.out.println("here");
+                setFightersNoRename(temp, type);
+                isDone = true;
             }
         }
-        else
-        {
-            if (type.equals("StrengthUser"))
-            {
-                Fighter playerFighter = new StrengthFighterImpl(temp);
-                Combatant player = new Combatant(playerFighter, true);
-                cList.getCombatantsList().add(player);
-            }
-            else if (type.equals("MagicUser"))
-            {
-                Fighter playerFighter = new MagicFighterImpl(temp);
-                Combatant player = new Combatant(playerFighter, true);
-                cList.getCombatantsList().add(player);
-            }
-        }
+        Fighter playerFighter = fList.getFighter("Aeris").copy();
+        Combatant newC = new Combatant(playerFighter, true);
+        cList.getCombatantsList().add(newC);
         cList.printCombatants();
+        cList.getCombatantByTag("Player1").getFighter().setPrimaryStat(6000);
         System.out.println(cList.getCombatantByTag("Player1").getFighter());
+        System.out.println(cList.getCombatantByTag("Player2").getFighter());
+    }
+
+    public void setFightersNoRename(Fighter temp, String type)
+    {
+        if (type.equals("StrengthUser"))
+        {
+            Fighter playerFighter = new StrengthFighterImpl(temp);
+            Combatant player = new Combatant(playerFighter, true);
+            cList.getCombatantsList().add(player);
+        }
+        else if (type.equals("MagicUser"))
+        {
+            Fighter playerFighter = new MagicFighterImpl(temp);
+            Combatant player = new Combatant(playerFighter, true);
+            cList.getCombatantsList().add(player);
+        }
     }
 
 //    public void setupCharacters()

@@ -29,7 +29,6 @@ public class CharacterSelectFrame extends JFrame {
     private File resDir = new File("");
 
     private JLabel[] picLabel;
-    private JOptionPane optionPane;
     private JButton[] button;
     private JTextArea[] stats;
     private JPanel panel;
@@ -128,7 +127,15 @@ public class CharacterSelectFrame extends JFrame {
 
     public String showNewNameDialog()
     {
-        return JOptionPane.showInputDialog(this, "Enter new Name");
+        String str = JOptionPane.showInputDialog(this, "Enter new Name");
+        if (str != null)
+        {
+            if (str.isEmpty())
+            {
+                System.out.println("HERE");
+                str = showNewNameDialog();
+            }
+        }
+        return str;
     }
-
 }

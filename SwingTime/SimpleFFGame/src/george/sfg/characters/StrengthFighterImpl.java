@@ -107,6 +107,6 @@ public class StrengthFighterImpl extends AbstractFighter implements StrengthFigh
 
     public String toString()
     {
-        return (super.toString() + "\nStrength:" + strength + "\nEnergy:" + rage + weaponToString());
+        return (super.toString() + "\nStrength:" + strength + "\nEnergy:" + rage.getMaxValue() + "\n" + weaponToString());
     }
 }
