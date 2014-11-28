@@ -12,6 +12,7 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
     private int health;
     private int speed;
     private Weapon weapon;
+    private String type;
 
     public AbstractFighter(String name, int health, int speed)
     {
@@ -19,6 +20,24 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
         this.health = health;
         this.speed = speed;
         this.weapon = null;
+    }
+
+    public AbstractFighter(Fighter copyFighter)
+    {
+        this.name = copyFighter.getName();
+        this.attack = copyFighter.getAttack();
+        this.health = copyFighter.getHealth();
+        this.speed = copyFighter.getSpeed();
+        this.type = copyFighter.getType();
+    }
+
+    public AbstractFighter(Fighter copyFighter, String newName)
+    {
+        this.name = newName;
+        this.attack = copyFighter.getAttack();
+        this.health = copyFighter.getHealth();
+        this.speed = copyFighter.getSpeed();
+        this.type = copyFighter.getType();
     }
 
     protected Object clone() throws CloneNotSupportedException
@@ -133,6 +152,16 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
         {
             return " " + weapon.getName();
         }
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
     }
 
 }

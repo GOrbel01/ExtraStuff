@@ -17,7 +17,24 @@ public class StrengthFighterImpl extends AbstractFighter implements StrengthFigh
         super(name, health, speed);
         this.strength = strength;
         this.rage = new RageImpl();
+        setType("StrengthUser");
         this.setupAttack();
+    }
+
+    public StrengthFighterImpl(Fighter copyFighter)
+    {
+        super(copyFighter);
+        StrengthFighterImpl copyStrength = (StrengthFighterImpl) copyFighter;
+        this.strength = copyStrength.getPrimaryStat();
+        this.rage = copyStrength.getResource();
+    }
+
+    public StrengthFighterImpl(Fighter copyFighter, String newName)
+    {
+        super(copyFighter, newName);
+        StrengthFighterImpl copyStrength = (StrengthFighterImpl) copyFighter;
+        this.strength = copyStrength.getPrimaryStat();
+        this.rage = copyStrength.getResource();
     }
 
     protected Object clone() throws CloneNotSupportedException

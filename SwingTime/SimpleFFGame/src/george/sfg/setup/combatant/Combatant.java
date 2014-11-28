@@ -10,7 +10,6 @@ import george.sfg.characters.StrengthFighterImpl;
  */
 public class Combatant {
     private final Fighter fighter;
-    private final String type;
     private String tag;
     private final boolean isPlayer;
     private static int playerCount = 0;
@@ -27,7 +26,6 @@ public class Combatant {
     {
         fighter = newFighter;
         setupTag(playerCheck);
-        type = ""+newFighter.getPrimaryStat();
         isPlayer = playerCheck;
     }
 
@@ -36,7 +34,6 @@ public class Combatant {
         fighter = newFighter;
         fighter.setName(newName);
         setupTag(playerCheck);
-        type = ""+newFighter.getPrimaryStat();
         isPlayer = playerCheck;
     }
 
@@ -66,10 +63,6 @@ public class Combatant {
         return fighter;
     }
 
-    public String getType()
-    {
-        return type;
-    }
 
     public String getTag()
     {

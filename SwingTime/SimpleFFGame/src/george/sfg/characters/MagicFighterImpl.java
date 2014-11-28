@@ -18,7 +18,24 @@ public class MagicFighterImpl extends AbstractFighter implements MagicFighter {
         super(name, health, speed);
         this.magic = magic;
         this.mana = new ManaImpl();
+        setType("MagicUser");
         setupAttack();
+    }
+
+    public MagicFighterImpl(Fighter copyFighter)
+    {
+        super(copyFighter);
+        MagicFighterImpl copyMagic = (MagicFighterImpl) copyFighter;
+        this.magic = copyMagic.getPrimaryStat();
+        this.mana = copyMagic.getResource();
+    }
+
+    public MagicFighterImpl(Fighter copyFighter, String newName)
+    {
+        super(copyFighter, newName);
+        MagicFighterImpl copyMagic = (MagicFighterImpl) copyFighter;
+        this.magic = copyMagic.getPrimaryStat();
+        this.mana = copyMagic.getResource();
     }
 
     protected Object clone() throws CloneNotSupportedException
@@ -87,4 +104,5 @@ public class MagicFighterImpl extends AbstractFighter implements MagicFighter {
     {
         return (super.toString() + "\nMagic:" + magic + "\nMana:" + mana + weaponToString());
     }
+
 }

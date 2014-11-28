@@ -35,4 +35,12 @@ public class CombatantList {
         }
         return null;
     }
+
+    public void printCombatants()
+    {
+        for (int i = 0; i < combatants.size(); i++)
+        {
+            System.out.println("Name of Element " + i + ":" + combatants.get(i).getFighter().getName());
+        }
+    }
 }

@@ -1,13 +1,14 @@
 package george.sfg.userinterface;
 
 import george.sfg.characters.Fighter;
+import george.sfg.characters.storedCharacters.FighterList;
 import george.sfg.setup.CharacterSetup;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
@@ -20,59 +21,44 @@ public class CharacterSelectFrame extends JFrame {
     private static final int FRAME_WIDTH = 1250;
     private static final int FRAME_HEIGHT = 900;
 
-    private List<Fighter> fighterList;
+    private FighterList frameFighters = new FighterList();
+    private List<Fighter> fighterList = frameFighters.getList();
 
     private int number;
 
-    private BufferedImage[] images;
+    private File resDir = new File("");
 
-    File tempFile = new File("");
-    File resDir = new File(tempFile.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
-            "resource");
-
-    private JLabel[] nameLabel;
-    private JLabel picLabel;
+    private JLabel[] picLabel;
+    private JOptionPane optionPane;
+    private JButton[] button;
     private JTextArea[] stats;
     private JPanel panel;
 
-    private CharacterSetup cSetup;
 
     public CharacterSelectFrame()
     {
-
-    }
-
-    public CharacterSelectFrame(List<Fighter> fighters, CharacterSetup chs)
-    {
-        number = fighters.size();
-        nameLabel = new JLabel[number];
+        resDir = new File(resDir.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
+                "resource");
+        number = fighterList.size();
+        button = new JButton[number];
         stats = new JTextArea[number];
-        images = new BufferedImage[number];
-
-        this.fighterList = fighters;
-
-        cSetup = chs;
-
+        picLabel = new JLabel[number];
         for (int i = 0; i < fighterList.size(); i++)
         {
-//            System.out.println("PD_TEST: " + testFile.getAbsolutePath());
-            if (i == 0)
-            {
                 try
                 {
-                    System.out.println("PATH: " + resDir.getAbsolutePath() + "Pic0.jpg");
                     BufferedImage myPicture = ImageIO.read(new File(resDir.getAbsolutePath() + File.separator
-                            + "Pic" + "0" + ".jpg"));
-                    picLabel = new JLabel(new ImageIcon(myPicture));
-                    picLabel.setBounds(0, 0, 42, 42);
+                            + "Pic" + i + ".jpg"));
+                    picLabel[i] = new JLabel(new ImageIcon(myPicture));
+                    picLabel[i].setBounds(0, 0, 120, 143);
                 }
                 catch (IOException ex)
                 {
                     ex.printStackTrace();
                 }
-            }
             stats[i] = new JTextArea(4, 5);
             createTextArea(i);
+            createButton(i);
         }
 
         createPanel();
@@ -80,41 +66,69 @@ public class CharacterSelectFrame extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }
 
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponents(g);
-        g.drawImage(images[0], 0, 0, null);
-    }
 
     private void createPanel()
     {
         panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 4));
-//        panel.add();
+//        panel.setLayout(new GridLayout(5, 5));
+        panel.setLayout(new FlowLayout());
         JScrollPane scrollPane = null;
         for (int i = 0; i < number; i++)
         {
+            panel.add(picLabel[i]);
             scrollPane = new JScrollPane(stats[i]);
             panel.add(scrollPane);
-            panel.add(nameLabel[i]);
+            panel.add(button[i]);
         }
-        add(picLabel);
         add(panel);
     }
 
     private void createTextArea(int number)
     {
-        createNameField(number);
+        stats[number].append("Name: " + fighterList.get(number).getName() + "\n");
         stats[number].append("Base Attack: " + fighterList.get(number).getAttack() + "\n");
-        stats[number].append("Base Strength: " + fighterList.get(number).getPrimaryStat() + "\n");
+        if (fighterList.get(number).getType().equals("MagicUser"))
+        {
+            stats[number].append("Base Magic: " + fighterList.get(number).getPrimaryStat() + "\n");
+        }
+        else if (fighterList.get(number).getType().equals("StrengthUser"))
+        {
+            stats[number].append("Base Strength: " + fighterList.get(number).getPrimaryStat() + "\n");
+        }
         stats[number].append("Base Health: " + fighterList.get(number).getHealth() + "\n");
         stats[number].append("Resource: " + fighterList.get(number).getResource().getResourceName() + "\n");
         stats[number].append("Base Speed: " + fighterList.get(number).getSpeed());
+        stats[number].setAlignmentX(JScrollPane.CENTER_ALIGNMENT);
+        stats[number].setRows(9);
+        stats[number].setColumns(12);
         stats[number].setEditable(false);
     }
 
-    private void createNameField(int number)
+    private void createButton(int number)
     {
-        nameLabel[number] = new JLabel(fighterList.get(number).getName());
+        String name = fighterList.get(number).getName();
+        button[number] = new JButton("Select " + name);
+        button[number].setBounds(0, 0, 2, 2);
+        ActionListener listener = new CharacterSetup(this);
+        button[number].addActionListener(listener);
     }
+
+    public boolean showDialog(String info)
+    {
+        int reply = JOptionPane.showConfirmDialog(this, info, "Confirm", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public String showNewNameDialog()
+    {
+        return JOptionPane.showInputDialog(this, "Enter new Name");
+    }
+
 }

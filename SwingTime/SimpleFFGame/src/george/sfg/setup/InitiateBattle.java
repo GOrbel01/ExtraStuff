@@ -25,8 +25,7 @@ public class InitiateBattle {
 //        chs.setupCharacters();
 //        System.out.println(chs.getCombatantList().getCombatantByTag("Player1").getFighter().getName());
         JFrame frame;
-        CharacterSetup charSetup = new CharacterSetup();
-        frame = new CharacterSelectFrame(charSetup.getFighterList().getList(), charSetup);
+        frame = new CharacterSelectFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 //

@@ -39,4 +39,6 @@ public interface Fighter {
 
     boolean hasWeaponEquipped();
 
+    String getType();
+
 }
