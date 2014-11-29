@@ -6,11 +6,20 @@ package george.sfg.weapons;
 public abstract class AbstractWeapon implements Weapon, Cloneable {
     private final String name;
     private double bonusAttack;
+    private WeaponImage wepImage;
+    private String type;
 
     public AbstractWeapon(String name, double attack)
     {
         this.name = name;
         this.bonusAttack = attack;
+    }
+
+    public AbstractWeapon(String name, double attack, String imagePath)
+    {
+        this.name = name;
+        this.bonusAttack = attack;
+        this.wepImage = new WeaponImage(imagePath);
     }
 
     public String getName()
@@ -46,6 +55,21 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public WeaponImage getWepImage()
+    {
+        return wepImage;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
     }
 }
 

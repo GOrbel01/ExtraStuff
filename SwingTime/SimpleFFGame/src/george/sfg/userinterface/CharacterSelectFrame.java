@@ -21,8 +21,7 @@ public class CharacterSelectFrame extends JFrame {
     private static final int FRAME_WIDTH = 1250;
     private static final int FRAME_HEIGHT = 900;
 
-    private FighterList frameFighters = new FighterList();
-    private List<Fighter> fighterList = frameFighters.getList();
+    private List<Fighter> fighterList;
 
     private int number;
 
@@ -36,6 +35,8 @@ public class CharacterSelectFrame extends JFrame {
 
     public CharacterSelectFrame()
     {
+        FighterList frameFighters = new FighterList();
+        fighterList = frameFighters.getList();
         resDir = new File(resDir.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
                 "resource");
         number = fighterList.size();
@@ -59,9 +60,7 @@ public class CharacterSelectFrame extends JFrame {
             createTextArea(i);
             createButton(i);
         }
-
         createPanel();
-
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }
 

@@ -7,8 +7,10 @@ import george.sfg.characters.storedCharacters.FighterList;
 import george.sfg.setup.combatant.Combatant;
 import george.sfg.setup.combatant.CombatantList;
 import george.sfg.userinterface.CharacterSelectFrame;
+import george.sfg.userinterface.WeaponSelectFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -23,6 +25,8 @@ public class CharacterSetup implements ActionListener {
 
     private FighterList fList = new FighterList();
     private CombatantList cList = new CombatantList();
+
+    private WeaponSelectFrame wepSelLaunch;
 
     private CharacterSelectFrame frame;
 
@@ -43,6 +47,13 @@ public class CharacterSetup implements ActionListener {
         {
             setSelection(selectedChar);
         }
+        wepSelLaunch = new WeaponSelectFrame();
+        wepSelLaunch.launchFrame();
+    }
+
+    public void printWords()
+    {
+
     }
 
     public void setSelection(String name)
@@ -98,13 +109,9 @@ public class CharacterSetup implements ActionListener {
                 isDone = true;
             }
         }
-        Fighter playerFighter = fList.getFighter("Aeris").copy();
-        Combatant newC = new Combatant(playerFighter, true);
-        cList.getCombatantsList().add(newC);
+        frame.setVisible(false);
         cList.printCombatants();
-        cList.getCombatantByTag("Player1").getFighter().setPrimaryStat(6000);
         System.out.println(cList.getCombatantByTag("Player1").getFighter());
-        System.out.println(cList.getCombatantByTag("Player2").getFighter());
     }
 
     public void setFightersNoRename(Fighter temp, String type)
@@ -123,51 +130,6 @@ public class CharacterSetup implements ActionListener {
         }
     }
 
-//    public void setupCharacters()
-//    {
-//        charSelect();
-//    }
-//
-//    public void charSelect()
-//    {
-//        boolean isDone = false;
-//        String charSelect = "";
-//        Scanner keyboard = new Scanner(System.in);
-//        while (!isDone)
-//        {
-//            System.out.println("Please Enter Which Character you wish to use by name.");
-//            charSelect = keyboard.next();
-//            if (fList.containsFighter(charSelect))
-//            {
-//                isDone = true;
-//            }
-//        }
-//        isDone = false;
-//        if (renameOption())
-//        {
-//            String newName = "";
-//            System.out.println("Enter a new name for your Fighter");
-//            while(!isDone)
-//            {
-//                newName = keyboard.next();
-//                if (isValidName(newName))
-//                {
-//                    isDone = true;
-//                }
-//                else
-//                {
-//                    System.out.println("Invalid Name. Try Again!");
-//                }
-//            }
-//            cList.getCombatantsList().add(new Combatant(fList.getFighter(charSelect).copy(), newName, true));
-//        }
-//        else
-//        {
-//            cList.getCombatantsList().add(new Combatant(fList.getFighter(charSelect).copy(), true));
-//        }
-//    }
-//
-
     public boolean isValidName(String selection)
     {
         boolean valid = true;
@@ -180,53 +142,6 @@ public class CharacterSetup implements ActionListener {
         }
         return valid;
     }
-//
-//    public boolean renameOption()
-//    {
-//        String rename = "";
-//        boolean isDone = false;
-//        Scanner keyboard = new Scanner(System.in);
-//        System.out.println("Would you like to Rename your Character? Y/N");
-//        while (!isDone)
-//        {
-//            try {
-//                rename = keyboard.next();
-//                if (isValidRenameSelect(rename))
-//                {
-//                    isDone = true;
-//                }
-//                else
-//                {
-//                    System.out.println("Invalid Selection: Try Again");
-//                }
-//            }
-//            catch (InputMismatchException ex)
-//            {
-//                ex.printStackTrace();
-//                System.out.println("Input Mismatch Enter Letters Y/N Only");
-//            }
-//        }
-//        if (rename.equalsIgnoreCase("y"))
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
-//
-//    public boolean isValidRenameSelect(String str)
-//    {
-//        if (str.equalsIgnoreCase("y") || str.equalsIgnoreCase("n"))
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
 
     public FighterList getFighterList()
     {

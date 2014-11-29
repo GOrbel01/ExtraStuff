@@ -10,6 +10,14 @@ public class MagicWeaponImpl extends AbstractWeapon implements Weapon {
     public MagicWeaponImpl(String name, double bonusAttack, int bonusMagic)
     {
         super(name, bonusAttack);
+        setType("MagicWeapon");
+        this.bonusMagic = bonusMagic;
+    }
+
+    public MagicWeaponImpl(String name, double bonusAttack, int bonusMagic, String imageName)
+    {
+        super(name, bonusAttack, imageName);
+        setType("MagicWeapon");
         this.bonusMagic = bonusMagic;
     }
 

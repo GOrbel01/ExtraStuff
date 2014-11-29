@@ -4,6 +4,7 @@ import george.sfg.weapons.MagicWeaponImpl;
 import george.sfg.weapons.StrengthWeaponImpl;
 import george.sfg.weapons.Weapon;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,10 @@ import java.util.List;
 public class WeaponList {
     private static List<Weapon> weaponList;
 
+    File resDir = new File("");
+    private String dirForAll = resDir.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
+            "resource" + File.separator + "weapon";
+
     public WeaponList()
     {
         weaponList = new ArrayList<>();
@@ -21,10 +26,15 @@ public class WeaponList {
 
     public void addToList()
     {
-        add(new StrengthWeaponImpl("Simple Sword", 25, 20));
-        add(new StrengthWeaponImpl("Simple Gunblade", 15, 30));
-        add(new MagicWeaponImpl("Simple Tome", 25, 30));
-        add(new MagicWeaponImpl("Simple Staff", 40, 10));
+        String fileType = ".jpg";
+        add(new StrengthWeaponImpl("Brotherhood", 25, 20, dirForAll + File.separator + "weapon0" + fileType));
+        add(new StrengthWeaponImpl("Lionheart", 15, 30, dirForAll + File.separator + "weapon2" + fileType));
+        add(new MagicWeaponImpl("Cage of Purity", 25, 30, dirForAll + File.separator + "weapon3" + fileType));
+        add(new MagicWeaponImpl("Nirvana", 40, 10, dirForAll + File.separator + "weapon1" + fileType));
+        add(new MagicWeaponImpl("Life and Death", 40, 10, dirForAll + File.separator + "LifeAndDeath" + fileType));
+        add(new StrengthWeaponImpl("Masamune", 22, 24, dirForAll + File.separator + "Crisis_Core_Masamune" + fileType));
+        add(new StrengthWeaponImpl("Ultimate Keyblade", 12, 35, dirForAll + File.separator + "UltimateKeyblade" + fileType));
+        add(new MagicWeaponImpl("Fairy Tale", 30, 20, dirForAll + File.separator + "fairytale" + fileType));
     }
 
     public Weapon add(Object newWeapon)

@@ -13,4 +13,8 @@ public interface Weapon {
 
     Object copy();
 
+    WeaponImage getWepImage();
+
+    String getType();
+
 }
