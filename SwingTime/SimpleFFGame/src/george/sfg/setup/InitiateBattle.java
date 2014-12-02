@@ -16,18 +16,14 @@ public class InitiateBattle {
     {
         InitiateBattle newBattle = new InitiateBattle();
         newBattle.launch();
+        System.out.println("After Launch Method");
 
     }
 
     public void launch()
     {
-//        CharacterSetup chs = new CharacterSetup();
-//        chs.setupCharacters();
-//        System.out.println(chs.getCombatantList().getCombatantByTag("Player1").getFighter().getName());
-        JFrame frame;
-        frame = new CharacterSelectFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-//
+        CharacterSetup chs = new CharacterSetup();
+        chs.runSetup();
+        System.out.println("In Launch Method");
     }
 }

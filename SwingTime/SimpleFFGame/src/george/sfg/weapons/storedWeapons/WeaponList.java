@@ -16,7 +16,7 @@ public class WeaponList {
 
     File resDir = new File("");
     private String dirForAll = resDir.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
-            "resource" + File.separator + "weapon";
+            "resource" + File.separator + "resources/weapon";
 
     public WeaponList()
     {

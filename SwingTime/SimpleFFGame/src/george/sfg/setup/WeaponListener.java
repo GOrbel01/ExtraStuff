@@ -1,7 +1,6 @@
 package george.sfg.setup;
 
 import george.sfg.userinterface.WeaponSelectFrame;
-import george.sfg.weapons.Weapon;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
