@@ -1,6 +1,8 @@
 package george.sfg.userinterface.framework;
 
 
+import george.sfg.userinterface.ScreensController;
+import george.sfg.userinterface.ScreensFramework;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

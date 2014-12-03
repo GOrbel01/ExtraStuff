@@ -3,7 +3,6 @@ package george.sfg.setup;
 import java.util.concurrent.*;
 
 import george.sfg.setup.combatant.CombatantList;
-import george.sfg.userinterface.CharacterSelectFrame;
 
 import javax.swing.*;
 
@@ -23,7 +22,6 @@ public class InitiateBattle {
     public void launch()
     {
         CharacterSetup chs = new CharacterSetup();
-        chs.runSetup();
         System.out.println("In Launch Method");
     }
 }

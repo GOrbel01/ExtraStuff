@@ -1,5 +1,7 @@
 package george.sfg.userinterface.framework;
 
+import george.sfg.userinterface.ScreensController;
+import george.sfg.userinterface.ScreensFramework;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;

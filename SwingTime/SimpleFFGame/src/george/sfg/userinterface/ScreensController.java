@@ -1,5 +1,6 @@
-package george.sfg.userinterface.framework;
+package george.sfg.userinterface;
 
+import george.sfg.userinterface.framework.ControlledScreen;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -40,6 +41,9 @@ public class ScreensController extends StackPane {
     public boolean loadScreen(String name, String resource)
     {
         try {
+            System.out.println(resource);
+            System.out.println(getClass().getResource(""));
+            System.out.println(getClass().getResource(resource));
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
             Parent loadScreen = (Parent) myLoader.load();
             ControlledScreen myScreenController = (ControlledScreen) myLoader.getController();

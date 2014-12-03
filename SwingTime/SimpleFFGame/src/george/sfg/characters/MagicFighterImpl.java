@@ -13,9 +13,9 @@ public class MagicFighterImpl extends AbstractFighter implements MagicFighter {
     private int magic;
     private Mana mana;
 
-    public MagicFighterImpl(String name, int health, int speed, int magic, int mana)
+    public MagicFighterImpl(String name, int health, int speed, int magic, int mana, String res)
     {
-        super(name, health, speed);
+        super(name, health, speed, res);
         this.magic = magic;
         this.mana = new ManaImpl();
         setType("MagicUser");

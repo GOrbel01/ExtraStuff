@@ -1,6 +1,14 @@
 package george.sfg.characters;
 
+import george.sfg.userinterface.resources.ResDir;
 import george.sfg.weapons.Weapon;
+import javafx.scene.image.Image;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by Cloud on 23/11/2014.
@@ -11,11 +19,22 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
     private double attack;
     private int health;
     private int speed;
+    private Image image;
     private Weapon weapon;
     private String type;
 
-    public AbstractFighter(String name, int health, int speed)
+    public AbstractFighter(String name, int health, int speed, String resource)
     {
+        System.out.println(resource);
+        String full = ResDir.resString + File.separator + "characters" + File.separator + resource;
+        try {
+            FileInputStream stream = new FileInputStream(full);
+            this.image = new Image(stream);
+        }
+        catch (FileNotFoundException ex)
+        {
+            ex.printStackTrace();
+        }
         this.name = name;
         this.health = health;
         this.speed = speed;
@@ -67,7 +86,6 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
 
     public String getName()
     {
-        System.out.println("Calling getName()...");
         try
         {
             return this.name;
@@ -162,6 +180,11 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
     public void setType(String type)
     {
         this.type = type;
+    }
+
+    public Image getImage()
+    {
+        return image;
     }
 
 }

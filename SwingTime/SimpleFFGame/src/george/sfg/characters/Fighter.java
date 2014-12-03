@@ -3,6 +3,7 @@ package george.sfg.characters;
 import george.sfg.resource.Rage;
 import george.sfg.resource.Resource;
 import george.sfg.weapons.Weapon;
+import javafx.scene.image.Image;
 
 /**
  * Created by Cloud on 23/11/2014.
@@ -40,5 +41,7 @@ public interface Fighter {
     boolean hasWeaponEquipped();
 
     String getType();
+
+    Image getImage();
 
 }

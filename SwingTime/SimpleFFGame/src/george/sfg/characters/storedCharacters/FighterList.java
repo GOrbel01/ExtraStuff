@@ -22,15 +22,15 @@ public class FighterList {
 
     private void populateList()
     {
-        fighterList.add(new StrengthFighterImpl("Cloud", 1500, 40, 50));
-        fighterList.add(new StrengthFighterImpl("Squall", 1450, 45, 60));
-        fighterList.add(new MagicFighterImpl("Kuja", 1400, 50, 65, 100));
-        fighterList.add(new MagicFighterImpl("Edea", 1350, 60, 70, 100));
-        fighterList.add(new StrengthFighterImpl("Tifa", 1400, 55, 45));
-        fighterList.add(new MagicFighterImpl("Aeris", 1100, 65, 55, 120));
-        fighterList.add(new StrengthFighterImpl("Auron", 1400, 40, 50));
-        fighterList.add(new MagicFighterImpl("Yuna", 1150, 60, 60, 120));
-        fighterList.add(new StrengthFighterImpl("Sephiroth", 1100, 70, 55));
+        fighterList.add(new StrengthFighterImpl("Cloud", 1500, 40, 50, "Pic0.jpg"));
+        fighterList.add(new StrengthFighterImpl("Squall", 1450, 45, 60, "Pic1.jpg"));
+        fighterList.add(new MagicFighterImpl("Kuja", 1400, 50, 65, 100, "Pic2.jpg"));
+        fighterList.add(new MagicFighterImpl("Edea", 1350, 60, 70, 100, "Pic3.jpg"));
+        fighterList.add(new StrengthFighterImpl("Tifa", 1400, 55, 45, "Pic4.jpg"));
+        fighterList.add(new MagicFighterImpl("Aeris", 1100, 65, 55, 120, "Pic5.jpg"));
+        fighterList.add(new StrengthFighterImpl("Auron", 1400, 40, 50, "Pic6.jpg"));
+        fighterList.add(new MagicFighterImpl("Yuna", 1150, 60, 60, 120, "Pic7.jpg"));
+        fighterList.add(new StrengthFighterImpl("Sephiroth", 1100, 70, 55, "Pic8.jpg"));
     }
 
     public Fighter getFighter(String name)

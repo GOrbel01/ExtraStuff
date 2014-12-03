@@ -12,9 +12,9 @@ public class StrengthFighterImpl extends AbstractFighter implements StrengthFigh
     private int strength;
     private Rage rage;
 
-    public StrengthFighterImpl(String name, int health, int speed, int strength)
+    public StrengthFighterImpl(String name, int health, int speed, int strength, String res)
     {
-        super(name, health, speed);
+        super(name, health, speed, res);
         this.strength = strength;
         this.rage = new RageImpl();
         setType("StrengthUser");
