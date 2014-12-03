@@ -6,11 +6,6 @@ import george.sfg.characters.StrengthFighterImpl;
 import george.sfg.characters.storedCharacters.FighterList;
 import george.sfg.setup.combatant.Combatant;
 import george.sfg.setup.combatant.CombatantList;
-import george.sfg.userinterface.CharacterSelectFrame;
-import george.sfg.userinterface.WeaponSelectFrame;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by Cloud on 25/11/2014.
