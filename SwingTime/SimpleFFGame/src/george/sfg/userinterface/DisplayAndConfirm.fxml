@@ -7,16 +7,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="root_box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.WeaponSelectController">
+<VBox fx:id="root_vbox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.DisplayAndConfirmController">
    <children>
       <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <items>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <TextArea fx:id="weapon_stats" editable="false" prefHeight="200.0" prefWidth="200.0" />
-                  <HBox alignment="CENTER">
+                  <TextArea fx:id="chosen_character_stats" editable="false" prefHeight="200.0" prefWidth="305.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></TextArea>
+                  <HBox alignment="CENTER" spacing="55.0">
                      <children>
-                        <Button fx:id="select_weapon" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#selectButtonClicked" text="Select">
+                        <Button fx:id="confirm_button" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmButtonClicked" text="Confirm">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancel_button" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -36,12 +44,16 @@
             </VBox>
             <VBox fillWidth="false" spacing="10.0">
                <children>
-                  <ImageView fx:id="weapon_image" fitHeight="178.0" fitWidth="193.0" pickOnBounds="true">
+                  <ImageView fx:id="chosen_character_image" fitHeight="191.0" fitWidth="274.0" pickOnBounds="true">
                      <VBox.margin>
-                        <Insets />
+                        <Insets left="5.0" top="5.0" />
                      </VBox.margin>
                   </ImageView>
-                  <ListView fx:id="weapons_list" editable="true" onMouseClicked="#listClicked" prefHeight="237.0" prefWidth="294.0" />
+                  <ImageView fx:id="chosen_weapon_image" fitHeight="191.0" fitWidth="274.0" pickOnBounds="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" />
+                     </VBox.margin>
+                  </ImageView>
                </children>
                <padding>
                   <Insets left="5.0" />

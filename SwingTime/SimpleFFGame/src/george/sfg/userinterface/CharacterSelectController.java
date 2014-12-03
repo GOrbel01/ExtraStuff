@@ -6,9 +6,7 @@ import george.sfg.userinterface.framework.ControlledScreen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,7 +22,7 @@ import java.util.*;
 /**
  * Created by Cloud on 03/12/2014.
  */
-public class CharacterSelectController implements ControlledScreen, Initializable {
+public class CharacterSelectController implements ControlledScreen {
 
     FighterList fighters = new FighterList();
 
@@ -39,8 +37,6 @@ public class CharacterSelectController implements ControlledScreen, Initializabl
     @FXML
     private TextArea stat_display;
 
-
-
     @FXML
     private ListView<String> char_listview;
 
@@ -50,12 +46,6 @@ public class CharacterSelectController implements ControlledScreen, Initializabl
 
     @FXML
     void initialize()
-    {
-        System.out.println("STARTING...");
-
-    }
-
-    public void initialize(URL url, ResourceBundle rb)
     {
         System.out.println("george.sfg.userinterface.framework.Controller.initialize");
         Thread thr = new Thread(initTask);
@@ -71,11 +61,25 @@ public class CharacterSelectController implements ControlledScreen, Initializabl
     @FXML
     public void listClicked(MouseEvent event)
     {
-        System.out.println("THREAD List: " + Thread.currentThread());
         String item = char_listview.getSelectionModel().getSelectedItem();
-        Fighter fighter = fighters.getFighter(item);
+        listClickedMethod(item);
+    }
+
+    public void listClickedMethod(String clicked)
+    {
+        Fighter fighter = fighters.getFighter(clicked);
         picture_view.setImage(fighter.getImage());
         stat_display.setText(fighter.toString());
+        select_button.setText("Select " + fighter.getName());
+    }
+
+    @FXML
+    public void selectButtonClicked(ActionEvent event)
+    {
+        String buttonPressed = select_button.getText();
+        String selection = StringFunction.splitFunction(buttonPressed);
+        myController.setSelectedCharacter(selection);
+        myController.setScreen("screen2");
     }
 
     Task<ObservableList<String>> initTask = new Task<ObservableList<String>>() {
@@ -87,9 +91,10 @@ public class CharacterSelectController implements ControlledScreen, Initializabl
                 names.add(fighters.getList().get(i).getName());
             }
             char_listview.setItems(names);
+            char_listview.getSelectionModel().select(0);
+            listClickedMethod(char_listview.getSelectionModel().getSelectedItem());
             return names;
         }
     };
-
 
 }

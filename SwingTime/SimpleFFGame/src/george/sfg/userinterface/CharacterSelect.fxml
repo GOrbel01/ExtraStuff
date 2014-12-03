@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox fx:id="root_box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.CharacterSelectController">
    <children>
       <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
@@ -17,7 +16,7 @@
                   <TextArea fx:id="stat_display" editable="false" prefHeight="200.0" prefWidth="200.0" />
                   <HBox alignment="CENTER">
                      <children>
-                        <Button fx:id="select_button" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Select">
+                        <Button fx:id="select_button" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#selectButtonClicked" text="Select">
                            <font>
                               <Font size="14.0" />
                            </font>

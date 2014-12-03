@@ -38,4 +38,23 @@ public class MagicWeaponImpl extends AbstractWeapon implements Weapon {
             return null;
         }
     }
+
+    public Weapon copy()
+    {
+        try
+        {
+            return (Weapon) clone();
+        }
+        catch (CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public String toString()
+    {
+        return super.toString() + "\n" + "Bonus Magic: " + bonusMagic;
+    }
 }

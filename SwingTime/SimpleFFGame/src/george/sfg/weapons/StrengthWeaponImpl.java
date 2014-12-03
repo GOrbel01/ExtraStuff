@@ -39,4 +39,22 @@ public class StrengthWeaponImpl extends AbstractWeapon implements Weapon {
         }
     }
 
+    public Weapon copy()
+    {
+        try
+        {
+            return (Weapon) clone();
+        }
+        catch (CloneNotSupportedException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String toString()
+    {
+        return super.toString() + "\n" + "Bonus Strength: " + bonusStrength;
+    }
+
 }

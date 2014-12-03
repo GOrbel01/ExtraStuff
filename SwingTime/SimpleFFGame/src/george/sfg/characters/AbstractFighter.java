@@ -168,7 +168,7 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
         }
         else
         {
-            return "" + weapon.getName();
+            return "" + weapon.getName() + " Equipped";
         }
     }
 

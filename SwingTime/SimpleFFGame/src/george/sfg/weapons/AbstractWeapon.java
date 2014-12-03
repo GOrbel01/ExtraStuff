@@ -1,12 +1,19 @@
 package george.sfg.weapons;
 
+import george.sfg.userinterface.resources.ResDir;
+import javafx.scene.image.Image;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 /**
  * Created by Cloud on 23/11/2014.
  */
 public abstract class AbstractWeapon implements Weapon, Cloneable {
     private final String name;
     private double bonusAttack;
-    private WeaponImage wepImage;
+    private Image image;
     private String type;
 
     public AbstractWeapon(String name, double attack)
@@ -17,9 +24,18 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
 
     public AbstractWeapon(String name, double attack, String imagePath)
     {
+        String full = ResDir.resString + File.separator + "weapons" + File.separator + imagePath;
+        try
+        {
+            FileInputStream stream = new FileInputStream(full);
+            this.image = new Image(stream);
+        }
+        catch (FileNotFoundException ex)
+        {
+            ex.printStackTrace();
+        }
         this.name = name;
         this.bonusAttack = attack;
-        this.wepImage = new WeaponImage(imagePath);
     }
 
     public String getName()
@@ -57,9 +73,9 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
         }
     }
 
-    public WeaponImage getWepImage()
+    public Image getWepImage()
     {
-        return wepImage;
+        return image;
     }
 
     public String getType()
@@ -70,6 +86,11 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
     public void setType(String type)
     {
         this.type = type;
+    }
+
+    public String toString()
+    {
+        return "Name: " + name + "\n" + "Bonus Attack: " + bonusAttack;
     }
 }
 

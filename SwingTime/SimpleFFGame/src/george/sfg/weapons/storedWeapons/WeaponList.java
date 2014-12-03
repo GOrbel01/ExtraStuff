@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Cloud on 23/11/2014.
  */
 public class WeaponList {
-    private static List<Weapon> weaponList;
+    private List<Weapon> weaponList;
 
     File resDir = new File("");
     private String dirForAll = resDir.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator +
@@ -27,14 +27,14 @@ public class WeaponList {
     public void addToList()
     {
         String fileType = ".jpg";
-        add(new StrengthWeaponImpl("Brotherhood", 25, 20, dirForAll + File.separator + "weapon0" + fileType));
-        add(new StrengthWeaponImpl("Lionheart", 15, 30, dirForAll + File.separator + "weapon2" + fileType));
-        add(new MagicWeaponImpl("Cage of Purity", 25, 30, dirForAll + File.separator + "weapon3" + fileType));
-        add(new MagicWeaponImpl("Nirvana", 40, 10, dirForAll + File.separator + "weapon1" + fileType));
-        add(new MagicWeaponImpl("Life and Death", 40, 10, dirForAll + File.separator + "LifeAndDeath" + fileType));
-        add(new StrengthWeaponImpl("Masamune", 22, 24, dirForAll + File.separator + "Crisis_Core_Masamune" + fileType));
-        add(new StrengthWeaponImpl("Ultimate Keyblade", 12, 35, dirForAll + File.separator + "UltimateKeyblade" + fileType));
-        add(new MagicWeaponImpl("Fairy Tale", 30, 20, dirForAll + File.separator + "fairytale" + fileType));
+        add(new StrengthWeaponImpl("Brotherhood", 25, 20, "weapon0" + fileType));
+        add(new StrengthWeaponImpl("Lionheart", 15, 30, "weapon2" + fileType));
+        add(new MagicWeaponImpl("Cage of Purity", 25, 30, "weapon3" + fileType));
+        add(new MagicWeaponImpl("Nirvana", 40, 10, "weapon1" + fileType));
+        add(new MagicWeaponImpl("Life and Death", 40, 10, "LifeAndDeath" + fileType));
+        add(new StrengthWeaponImpl("Masamune", 22, 24, "Crisis_Core_Masamune" + fileType));
+        add(new StrengthWeaponImpl("Ultimate Keyblade", 12, 35, "UltimateKeyblade" + fileType));
+        add(new MagicWeaponImpl("Fairy Tale", 30, 20, "fairytale" + fileType));
     }
 
     public Weapon add(Object newWeapon)
