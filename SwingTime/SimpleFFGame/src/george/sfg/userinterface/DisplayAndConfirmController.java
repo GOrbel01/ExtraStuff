@@ -26,6 +26,7 @@ import java.awt.event.WindowStateListener;
 import java.net.URL;
 import java.util.EventListener;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
@@ -67,7 +68,22 @@ public class DisplayAndConfirmController implements ControlledScreen {
     @FXML
     public void confirmButtonClicked(ActionEvent event)
     {
+        myController.setPlayerFighter(fighters.getFighter(myController.getSelectedCharacter()).copy());
+        myController.getPlayerFighter().equipWeapon(weapons.getWeapon(myController.getSelectedWeapon()));
+        Thread thr = new Thread(setupFighterTask);
+        thr.setName("Enemy Pick Thread");
+        thr.start();
+        myController.loadScreen(ScreensFramework.screen4ID, ScreensFramework.screen4File);
+        myController.setScreen("screen4");
+    }
 
+    public void pickRandomEnemy()
+    {
+        int charSel = IntFunction.randInt(0, fighters.getList().size());
+        int wepSel = IntFunction.randInt(0, weapons.getList().size());
+
+        myController.setEnemyFighter(fighters.getList().get(0).copy());
+        myController.getEnemyFighter().equipWeapon((Weapon) weapons.getList().get(0).copy());
     }
 
     @FXML
@@ -94,4 +110,10 @@ public class DisplayAndConfirmController implements ControlledScreen {
         }
     };
 
+    Task setupFighterTask = new Task<Void>() {
+        @Override public Void call() {
+            pickRandomEnemy();
+            return null;
+        }
+    };
 }

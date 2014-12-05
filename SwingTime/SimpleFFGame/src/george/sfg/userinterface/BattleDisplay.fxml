@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.BattleDisplayController">
+   <children>
+      <Button fx:id="dmg_test_button" layoutX="155.0" layoutY="282.0" mnemonicParsing="false" onAction="#onPressedDmgTestButton" text="DoDmg" />
+      <Button fx:id="skill2" layoutX="465.0" layoutY="282.0" mnemonicParsing="false" text="Button" textFill="WHITE" />
+      <Button fx:id="skill1" layoutX="413.0" layoutY="282.0" mnemonicParsing="false" onAction="#onPressedSkillButton1" text="Button" textFill="WHITE" />
+      <TextField fx:id="current_health" layoutX="133.0" layoutY="34.0" prefHeight="25.0" prefWidth="58.0" />
+      <Label layoutX="48.0" layoutY="38.0" text="Current Health" />
+   </children>
+</AnchorPane>

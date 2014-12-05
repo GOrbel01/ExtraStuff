@@ -10,5 +10,5 @@ public final class ResDir {
     public static String testResString = resDir.getAbsolutePath();
     public static String resString = resDir.getAbsolutePath() + File.separator + "SimpleFFGame" + File.separator
             + "src" + File.separator + "george" + File.separator + "sfg" + File.separator + "userinterface" +
-            File.separator + "resources";
+            File.separator + "resources" + File.separator;
 }

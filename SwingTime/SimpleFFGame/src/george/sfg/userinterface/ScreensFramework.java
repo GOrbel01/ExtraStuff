@@ -18,7 +18,8 @@ public class ScreensFramework extends Application {
     public static final String screen2File = "WeaponSelect.fxml";
     public static final String screen3ID = "screen3";
     public static final String screen3File = "DisplayAndConfirm.fxml";
-
+    public static final String screen4ID = "screen4";
+    public static final String screen4File = "BattleDisplay.fxml";
 
 
     @Override
@@ -42,7 +43,6 @@ public class ScreensFramework extends Application {
     {
         launch(args);
         System.out.println("End Main");
-        Scanner keyboard = new Scanner(System.in);
     }
 
 

@@ -15,6 +15,7 @@ import java.net.URL;
  */
 public abstract class AbstractFighter implements Fighter, Cloneable{
 
+    private String className;
     private String name;
     private double attack;
     private int health;
@@ -25,8 +26,7 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
 
     public AbstractFighter(String name, int health, int speed, String resource)
     {
-        System.out.println(resource);
-        String full = ResDir.resString + File.separator + "characters" + File.separator + resource;
+        String full = File.separator + ResDir.resString + File.separator + "characters" + File.separator + resource;
         try {
             FileInputStream stream = new FileInputStream(full);
             this.image = new Image(stream);
@@ -170,6 +170,16 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
         {
             return "" + weapon.getName() + " Equipped";
         }
+    }
+
+    public void setClassName(String cN)
+    {
+        className = cN;
+    }
+
+    public String getClassName()
+    {
+        return className;
     }
 
     public String getType()

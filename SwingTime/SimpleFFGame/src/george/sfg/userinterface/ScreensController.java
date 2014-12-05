@@ -1,5 +1,6 @@
 package george.sfg.userinterface;
 
+import george.sfg.characters.Fighter;
 import george.sfg.userinterface.framework.ControlledScreen;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -23,6 +24,8 @@ public class ScreensController extends StackPane {
 
     private String selectedCharacter;
     private String selectedWeapon;
+    private Fighter playerFighter;
+    private Fighter enemyFighter;
 
     private HashMap<String, Node> screens = new HashMap<>();
 
@@ -159,6 +162,26 @@ public class ScreensController extends StackPane {
         {
             return true;
         }
+    }
+
+    public void setPlayerFighter(Fighter fighter)
+    {
+        playerFighter = fighter;
+    }
+
+    public Fighter getPlayerFighter()
+    {
+        return playerFighter;
+    }
+
+    public Fighter getEnemyFighter()
+    {
+        return enemyFighter;
+    }
+
+    public void setEnemyFighter(Fighter fighter)
+    {
+        this.enemyFighter = fighter;
     }
 
     public String getSelectedCharacter()
