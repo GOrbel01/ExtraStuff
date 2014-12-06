@@ -31,7 +31,7 @@ public class ScreensFramework extends Application {
 
         mainContainer.loadScreen(ScreensFramework.screen1ID, ScreensFramework.screen1File);
         mainContainer.loadScreen(ScreensFramework.screen2ID, ScreensFramework.screen2File);
-
+        mainContainer.setPrefSize(1150, 640);
         mainContainer.setScreen(ScreensFramework.screen1ID);
 
         Group root = new Group();

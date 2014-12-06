@@ -69,6 +69,7 @@ public class DisplayAndConfirmController implements ControlledScreen {
     @FXML
     public void confirmButtonClicked(ActionEvent event)
     {
+        confirm_button.setDisable(true);
         myController.setPlayerFighter(fighters.getFighter(myController.getSelectedCharacter()).copy());
         myController.getPlayerFighter().equipWeapon(weapons.getWeapon(myController.getSelectedWeapon()));
         Thread thr = new Thread(setupFighterTask);
@@ -83,8 +84,8 @@ public class DisplayAndConfirmController implements ControlledScreen {
         int charSel = IntFunction.randInt(0, fighters.getList().size());
         int wepSel = IntFunction.randInt(0, weapons.getList().size());
 
-        myController.setEnemyFighter(fighters.getList().get(0).copy());
-        myController.getEnemyFighter().equipWeapon((Weapon) weapons.getList().get(0).copy());
+        myController.setEnemyFighter(fighters.getList().get(charSel).copy());
+        myController.getEnemyFighter().equipWeapon((Weapon) weapons.getList().get(wepSel).copy());
     }
 
     @FXML

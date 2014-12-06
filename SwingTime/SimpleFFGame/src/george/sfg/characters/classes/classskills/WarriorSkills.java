@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class WarriorSkills {
     private List<Skill> warriorSkillSet;
-    private final String path = "Warrior" + File.separator;
+    private final String path = "warrior/";
 
     public WarriorSkills()
     {
@@ -22,8 +22,10 @@ public class WarriorSkills {
 
     public void addToList()
     {
-        warriorSkillSet.add(new SkillImpl("Rend", 43, 23, path + "rend.jpg"));
-        warriorSkillSet.add(new SkillImpl("Heroic Strike", 43, 23, path + "heroicstrike.jpg"));
+        warriorSkillSet.add(new SkillImpl("Rend", 43, 23, "A strong bleed that damages the opponent over time.", path + "rend.jpg"));
+        warriorSkillSet.add(new SkillImpl("Heroic Strike", 43, 23, "A Strong  attack.", path + "heroicstrike.jpg"));
+        warriorSkillSet.add(new SkillImpl("Devastate", 43, 23, "A devastating blow", path + "devastate.jpg"));
+        warriorSkillSet.add(new SkillImpl("Hells Blade", 43, 23, "A horrifying strike", path + "hellsblade.jpg"));
     }
 
     public List<Skill> getList()

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
@@ -8,37 +9,41 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.BattleDisplayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.BattleDisplayController">
    <children>
-      <TitledPane layoutX="26.0" layoutY="188.0" text="Skills">
+      <TitledPane fx:id="skillPane" layoutX="14.0" layoutY="188.0" text="Skills">
          <content>
-            <AnchorPane snapToPixel="false">
+            <AnchorPane fx:id="skillAnchor" snapToPixel="false">
                <children>
-                  <Button fx:id="skill1" blendMode="DARKEN" contentDisplay="CENTER" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton1" text="Skill 1" textFill="WHITE">
-                     <padding>
-                        <Insets left="2.0" right="1.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="skill11" blendMode="DARKEN" contentDisplay="CENTER" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton1" text="Skill 3" textFill="WHITE">
-                     <padding>
-                        <Insets left="2.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="skill2" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" text="Skill 2" textFill="WHITE">
-                     <padding>
-                        <Insets left="2.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="skill21" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" text="Skill 4" textFill="WHITE">
-                     <padding>
-                        <Insets left="2.0" />
-                     </padding>
-                  </Button>
+                  <Group fx:id="player_controls">
+                     <children>
+                        <Button fx:id="skill2" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" text="Skill 2" textFill="WHITE">
+                           <padding>
+                              <Insets left="2.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="skill3" blendMode="DARKEN" contentDisplay="CENTER" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton1" text="Skill 3" textFill="WHITE">
+                           <padding>
+                              <Insets left="2.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="skill1" blendMode="DARKEN" contentDisplay="CENTER" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton1" text="Skill 1" textFill="WHITE">
+                           <padding>
+                              <Insets left="2.0" right="1.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="skill4" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" text="Skill 4" textFill="WHITE">
+                           <padding>
+                              <Insets left="2.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
          </content>
       </TitledPane>
-      <Button fx:id="dmg_test_button" layoutX="331.0" layoutY="394.0" mnemonicParsing="false" onAction="#onPressedDmgTestButton" text="DoDmg" />
+      <Button fx:id="dmg_test_button" layoutX="291.0" layoutY="427.0" mnemonicParsing="false" onAction="#onPressedDmgTestButton" text="DoDmg" />
       <TextField fx:id="current_health" layoutX="171.0" layoutY="111.0" prefHeight="25.0" prefWidth="58.0" />
       <Label layoutX="161.0" layoutY="86.0" text="Current Health" />
       <ImageView fx:id="player_image" fitHeight="143.0" fitWidth="123.0" layoutX="26.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
@@ -47,5 +52,20 @@
       <TextField fx:id="enemy_name" layoutX="399.0" layoutY="22.0" prefHeight="25.0" prefWidth="58.0" />
       <Label layoutX="389.0" layoutY="86.0" text="Enemy Health" />
       <TextField fx:id="enemy_health" layoutX="399.0" layoutY="110.0" prefHeight="25.0" prefWidth="58.0" />
+      <MenuButton fx:id="skillMenu" layoutX="130.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Skill Info">
+        <items>
+          <MenuItem fx:id="skill1Info" mnemonicParsing="false" onAction="#selectSkill" onMenuValidation="#selectSkill" text="Action 1" />
+          <MenuItem fx:id="skill2Info" mnemonicParsing="false" onAction="#selectSkill" text="Action 2" />
+            <MenuItem fx:id="skill3Info" mnemonicParsing="false" onAction="#selectSkill" text="Action 3" />
+            <MenuItem fx:id="skill4Info" mnemonicParsing="false" onAction="#selectSkill" text="Action 4" />
+        </items>
+      </MenuButton>
+      <TextArea fx:id="skill_description" layoutX="130.0" layoutY="213.0" prefHeight="101.0" prefWidth="140.0" />
+      <ImageView fitHeight="451.0" fitWidth="760.0" layoutX="388.0" layoutY="181.0">
+         <image>
+            <Image url="@resources/FFIViOS_Mt._Ordeals_Battle_Background.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="player_attack" layoutX="37.0" layoutY="351.0" mnemonicParsing="false" onAction="#playerAttackButton" text="Attack" />
    </children>
 </AnchorPane>

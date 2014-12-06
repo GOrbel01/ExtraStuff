@@ -16,16 +16,21 @@ public class SkillImpl implements Skill {
     private String name;
     private int cost;
     private int power;
+    private String description;
     private Image image;
     private String imagePath;
 
-    public SkillImpl(String name, int power, int cost, String resource)
+    public SkillImpl(String name, int power, int cost, String desc, String resource)
     {
         this.name = name;
         this.cost = cost;
         this.power = power;
+        description = desc;
+        System.out.println("RESOURCE CHECK: " + ScreensFramework.class.getClass().getResource("george"));
         imagePath = "george/sfg/userinterface/resources/skills/" + resource;
+        System.out.println("RESOURCE CHECK B: " + ScreensFramework.class.getClassLoader().getResource("george/sfg/userinterface/resources/skills/" + resource));
         this.image = new Image(ScreensFramework.class.getClassLoader().getResourceAsStream("george/sfg/userinterface/resources/skills/" + resource));
+//        this.image = new Image(ScreensFramework.class.getClassLoader().getResourceAsStream("george/sfg/userinterface/resources/skills/" + resource));
     }
 
     public String getImagePath()
@@ -68,4 +73,8 @@ public class SkillImpl implements Skill {
         return image;
     }
 
+    public String getDescription()
+    {
+        return description;
+    }
 }

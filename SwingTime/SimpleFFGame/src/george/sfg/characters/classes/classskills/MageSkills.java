@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class MageSkills {
     private List<Skill> mageSkillSet;
-    private final String path = "Mage" + File.separator;
+    private final String path = "mage/";
 
     public MageSkills()
     {
@@ -22,8 +22,10 @@ public class MageSkills {
 
     public void addToList()
     {
-        mageSkillSet.add(new SkillImpl("Fireball", 50, 20, path + "fireball.jpg"));
-        mageSkillSet.add(new SkillImpl("Arcane Blast", 50, 20, path + "arcaneblast.jpg"));
+        mageSkillSet.add(new SkillImpl("Fireball", 50, 20, "A fiery mass of destruction hurled at the enemy", path + "fireball.jpg"));
+        mageSkillSet.add(new SkillImpl("Arcane Blast", 50, 20, "A blast of pure arcane energy", path + "arcaneblast.jpg"));
+        mageSkillSet.add(new SkillImpl("Arcane Barrage", 50, 20, "A barrage of arcane bolts", path + "arcanebarrage.jpg"));
+        mageSkillSet.add(new SkillImpl("Cone of Cold", 50, 20, "A cone of bitterly cold energy", path + "coneofcold.jpg"));
     }
 
     public List<Skill> getList()

@@ -17,12 +17,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 
-import javax.sound.sampled.*;
 import javax.swing.*;
-import java.applet.Applet;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import javax.swing.event.MenuEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +28,24 @@ import java.util.List;
 public class BattleDisplayController implements ControlledScreen {
 
     private ScreensController myController;
+
+    @FXML
+    MenuButton skillMenu = new MenuButton();
+
+    @FXML
+    TextArea skill_description = new TextArea();
+
+    @FXML
+    MenuItem skill1Info = new MenuItem();
+
+    @FXML
+    MenuItem skill2Info = new MenuItem();
+
+    @FXML
+    MenuItem skill3Info = new MenuItem();
+
+    @FXML
+    MenuItem skill4Info = new MenuItem();
 
     @FXML
     TextField current_health = new TextField();
@@ -45,11 +59,10 @@ public class BattleDisplayController implements ControlledScreen {
     @FXML
     TextField enemy_health = new TextField();
 
-    @FXML
-    HBox bar_group = new HBox();
-
     MediaPlayer player;
 
+    @FXML
+    Group player_controls = new Group();
 
     @FXML
     Button skill1 = new Button();
@@ -64,6 +77,15 @@ public class BattleDisplayController implements ControlledScreen {
     Button skill4 = new Button();
 
     @FXML
+    Button player_attack = new Button();
+
+    @FXML
+    TitledPane skillPane = new TitledPane();
+
+    @FXML
+    AnchorPane skillAnchor = new AnchorPane();
+
+    @FXML
     Button dmg_test_button = new Button();
 
     @FXML
@@ -73,7 +95,7 @@ public class BattleDisplayController implements ControlledScreen {
     ImageView enemy_image = new ImageView();
 
     List<Button> buttons = new ArrayList<>();
-    List<ImageView> images = new ArrayList<>();
+    List<MenuItem> skilldescs = new ArrayList<>();
 
     public void initialize()
     {
@@ -83,12 +105,11 @@ public class BattleDisplayController implements ControlledScreen {
         thr.start();
     }
 
-
-
     @FXML
     public void onPressedSkillButton1(ActionEvent event)
     {
         System.out.println("SKIll1");
+        player_controls.setDisable(true);
     }
 
     @FXML
@@ -98,6 +119,17 @@ public class BattleDisplayController implements ControlledScreen {
         System.out.println(myController.getEnemyFighter().getHealth());
         takeDamage(150, myController.getPlayerFighter());
         updatePlayerHealth();
+    }
+
+    @FXML
+    public void selectSkill(ActionEvent event)
+    {
+        MenuItem temp = (MenuItem) event.getSource();
+        String numString = temp.getId().substring(5, 6);
+        int skillNo = Integer.parseInt(numString);
+        skillNo = skillNo - 1;
+        skill_description.setText(myController.getPlayerFighter().getSkills().get(skillNo).getDescription());
+        player_controls.setDisable(false);
     }
 
     @Override
@@ -125,6 +157,7 @@ public class BattleDisplayController implements ControlledScreen {
         }
     }
 
+
     private void deathEvent()
     {
         System.out.println("You Died Noob!");
@@ -138,6 +171,40 @@ public class BattleDisplayController implements ControlledScreen {
         current_health.setText("" + myController.getPlayerFighter().getHealth());
     }
 
+    private void updateEnemyHealth()
+    {
+        enemy_health.setText("" + myController.getEnemyFighter().getHealth());
+    }
+
+    @FXML
+    public void playerAttackButton()
+    {
+        playerAttack(140, myController.getEnemyFighter());
+        updateEnemyHealth();
+    }
+
+    private void playerAttack(int damage, Fighter fighter)
+    {
+        if (fighter.getHealth() - damage < 0)
+        {
+            fighter.setHealth(0);
+            updateEnemyHealth();
+            System.out.println("You Win");
+            //playerWin
+        }
+        else if (fighter.getHealth() - damage == 0)
+        {
+            fighter.setHealth(0);
+            updateEnemyHealth();
+            System.out.println("You Win");
+            //playerWin
+        }
+        else
+        {
+            fighter.setHealth(fighter.getHealth() - damage);
+        }
+    }
+
     public void setupMusic()
     {
         System.out.println("Music");
@@ -146,6 +213,23 @@ public class BattleDisplayController implements ControlledScreen {
         player.play();
         System.out.println("Leaving Msg thread.\n");
     }
+
+    Task secondInitTask = new Task<Void>() {
+        @Override public Void call()
+        {
+            System.out.println("In Thread 2");
+            skilldescs.add(skill1Info);
+            skilldescs.add(skill2Info);
+            skilldescs.add(skill3Info);
+            skilldescs.add(skill4Info);
+            skill_description.setWrapText(true);
+            for (int i = 0; i < myController.getPlayerFighter().getSkills().size(); i++)
+            {
+                skilldescs.get(i).setText(myController.getPlayerFighter().getSkills().get(i).getName());
+            }
+            return null;
+        }
+    };
 
     Task initTask = new Task<Void>() {
         @Override public Void call() {
@@ -163,7 +247,11 @@ public class BattleDisplayController implements ControlledScreen {
             {
                 buttons.get(i).setGraphic(new ImageView(myController.getPlayerFighter().getSkills().get(i).getImage()));
             }
+            System.out.println("HERE!!!");
             setupMusic();
+            Thread thr2 = new Thread(secondInitTask);
+            thr2.setName("Init Second Battle");
+            thr2.start();
 
             return null;
         }

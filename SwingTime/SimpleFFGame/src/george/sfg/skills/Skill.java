@@ -17,6 +17,8 @@ public interface Skill {
 
     int getCost();
 
+    String getDescription();
+
     void setCost(int cost);
 
     Image getImage();
