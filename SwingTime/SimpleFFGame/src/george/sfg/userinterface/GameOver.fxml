@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="george.sfg.userinterface.GameOverController">
+   <children>
+      <ImageView fitHeight="465.0" fitWidth="627.0" layoutX="7.0" layoutY="6.0" onMouseClicked="#onAnchorPaneClicked">
+         <image>
+            <Image url="@resources/gameover.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="257.0" layoutY="151.0" text="You were Defeated..." textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="285.0" text="Click Anywhere to Exit" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

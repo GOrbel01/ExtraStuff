@@ -20,6 +20,8 @@ public class ScreensFramework extends Application {
     public static final String screen3File = "DisplayAndConfirm.fxml";
     public static final String screen4ID = "screen4";
     public static final String screen4File = "BattleDisplay.fxml";
+    public static final String screen5ID = "screen5";
+    public static final String screen5File = "GameOver.fxml";
 
 
     @Override
@@ -39,11 +41,16 @@ public class ScreensFramework extends Application {
         primaryStage.show();
     }
 
+
+    public static void close()
+    {
+
+    }
+
     public static void main(String[] args)
     {
         launch(args);
         System.out.println("End Main");
     }
-
 
 }

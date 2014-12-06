@@ -1,5 +1,6 @@
 package george.sfg.characters;
 
+import george.sfg.userinterface.ScreensFramework;
 import george.sfg.userinterface.resources.ResDir;
 import george.sfg.weapons.Weapon;
 import javafx.scene.image.Image;
@@ -26,15 +27,7 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
 
     public AbstractFighter(String name, int health, int speed, String resource)
     {
-        String full = File.separator + ResDir.resString + File.separator + "characters" + File.separator + resource;
-        try {
-            FileInputStream stream = new FileInputStream(full);
-            this.image = new Image(stream);
-        }
-        catch (FileNotFoundException ex)
-        {
-            ex.printStackTrace();
-        }
+        this.image = new Image(ScreensFramework.class.getClassLoader().getResourceAsStream("george/sfg/userinterface/resources/characters/" + resource));
         this.name = name;
         this.health = health;
         this.speed = speed;

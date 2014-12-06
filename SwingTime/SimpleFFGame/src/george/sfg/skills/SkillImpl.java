@@ -1,5 +1,6 @@
 package george.sfg.skills;
 
+import george.sfg.userinterface.ScreensFramework;
 import george.sfg.userinterface.resources.ResDir;
 import javafx.scene.image.Image;
 
@@ -16,22 +17,20 @@ public class SkillImpl implements Skill {
     private int cost;
     private int power;
     private Image image;
+    private String imagePath;
 
     public SkillImpl(String name, int power, int cost, String resource)
     {
         this.name = name;
         this.cost = cost;
         this.power = power;
-        String full = ResDir.resString + File.separator + "skills" + File.separator + resource;
-        try
-        {
-            FileInputStream stream = new FileInputStream(full);
-            this.image = new Image(stream);
-        }
-        catch (FileNotFoundException ex)
-        {
-            ex.printStackTrace();
-        }
+        imagePath = "george/sfg/userinterface/resources/skills/" + resource;
+        this.image = new Image(ScreensFramework.class.getClassLoader().getResourceAsStream("george/sfg/userinterface/resources/skills/" + resource));
+    }
+
+    public String getImagePath()
+    {
+        return imagePath;
     }
 
     public String getName()

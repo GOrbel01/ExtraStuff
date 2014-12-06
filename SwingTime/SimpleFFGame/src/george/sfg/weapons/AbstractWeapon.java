@@ -1,5 +1,6 @@
 package george.sfg.weapons;
 
+import george.sfg.userinterface.ScreensFramework;
 import george.sfg.userinterface.resources.ResDir;
 import javafx.scene.image.Image;
 
@@ -24,16 +25,7 @@ public abstract class AbstractWeapon implements Weapon, Cloneable {
 
     public AbstractWeapon(String name, double attack, String imagePath)
     {
-        String full = ResDir.resString + File.separator + "weapons" + File.separator + imagePath;
-        try
-        {
-            FileInputStream stream = new FileInputStream(full);
-            this.image = new Image(stream);
-        }
-        catch (FileNotFoundException ex)
-        {
-            ex.printStackTrace();
-        }
+        this.image = new Image(ScreensFramework.class.getClassLoader().getResourceAsStream("george/sfg/userinterface/resources/weapons/" + imagePath));
         this.name = name;
         this.bonusAttack = attack;
     }

@@ -20,4 +20,6 @@ public interface Skill {
     void setCost(int cost);
 
     Image getImage();
+
+    String getImagePath();
 }
