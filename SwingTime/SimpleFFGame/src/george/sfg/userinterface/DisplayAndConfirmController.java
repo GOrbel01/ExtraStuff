@@ -72,6 +72,7 @@ public class DisplayAndConfirmController implements ControlledScreen {
         confirm_button.setDisable(true);
         myController.setPlayerFighter(fighters.getFighter(myController.getSelectedCharacter()).copy());
         myController.getPlayerFighter().equipWeapon(weapons.getWeapon(myController.getSelectedWeapon()));
+        myController.getPlayerFighter().setIdentifier("Player");
         Thread thr = new Thread(setupFighterTask);
         thr.setName("Enemy Pick Thread");
         thr.start();

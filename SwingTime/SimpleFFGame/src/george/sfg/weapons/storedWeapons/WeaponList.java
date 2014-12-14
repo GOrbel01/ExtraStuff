@@ -1,5 +1,6 @@
 package george.sfg.weapons.storedWeapons;
 
+import george.sfg.weapons.AgilityWeaponImpl;
 import george.sfg.weapons.MagicWeaponImpl;
 import george.sfg.weapons.StrengthWeaponImpl;
 import george.sfg.weapons.Weapon;
@@ -27,14 +28,18 @@ public class WeaponList {
     public void addToList()
     {
         String fileType = ".jpg";
-        add(new StrengthWeaponImpl("Brotherhood", 25, 20, "weapon0" + fileType));
-        add(new StrengthWeaponImpl("Lionheart", 15, 30, "weapon2" + fileType));
+        add(new AgilityWeaponImpl("Mage Masher", 15, 24, "magemasher" + fileType));
+        add(new AgilityWeaponImpl("Thori'dal, the Stars' Fury", 15, 24, "legbow" + fileType));
+        add(new AgilityWeaponImpl("Godhand", 15, 24, "godhand" + fileType));
+        add(new AgilityWeaponImpl("Caladbolg", 15, 24, "caladbolg" + fileType));
         add(new MagicWeaponImpl("Cage of Purity", 25, 30, "weapon3" + fileType));
         add(new MagicWeaponImpl("Nirvana", 40, 10, "weapon1" + fileType));
         add(new MagicWeaponImpl("Life and Death", 40, 10, "LifeAndDeath" + fileType));
+        add(new MagicWeaponImpl("Fairy Tale", 30, 20, "fairytale" + fileType));
+        add(new StrengthWeaponImpl("Brotherhood", 25, 20, "weapon0" + fileType));
+        add(new StrengthWeaponImpl("Lionheart", 15, 30, "weapon2" + fileType));
         add(new StrengthWeaponImpl("Masamune", 22, 24, "Crisis_Core_Masamune" + fileType));
         add(new StrengthWeaponImpl("Ultimate Keyblade", 12, 35, "UltimateKeyblade" + fileType));
-        add(new MagicWeaponImpl("Fairy Tale", 30, 20, "fairytale" + fileType));
     }
 
     public Weapon add(Object newWeapon)

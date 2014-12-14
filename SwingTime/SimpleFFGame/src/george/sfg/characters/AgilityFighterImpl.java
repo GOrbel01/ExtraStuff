@@ -1,41 +1,44 @@
 package george.sfg.characters;
 
-import george.sfg.resource.Rage;
-import george.sfg.resource.RageImpl;
-import george.sfg.resource.Resource;
+import george.sfg.resource.*;
 import george.sfg.weapons.Weapon;
 
 /**
- * Created by Cloud on 23/11/2014.
+ * Created by Squall on 09/12/2014.
  */
-public abstract class StrengthFighterImpl extends AbstractFighter implements StrengthFighter {
+public abstract class AgilityFighterImpl extends AbstractFighter implements AgilityFighter {
 
-    private int strength;
-    private Resource rage;
+    private int agility;
+    private Resource energy;
 
-    public StrengthFighterImpl(String name, int health, int speed, int strength, String res)
+    public AgilityFighterImpl(String name, int health, int speed, int agility, String res)
     {
         super(name, health, speed, res);
-        this.strength = strength;
-        this.rage = new RageImpl();
-        setType("StrengthUser");
+        this.agility = agility;
+        this.energy = new EnergyImpl();
+        setType("AgilityUser");
         this.setupAttack();
     }
 
-    public StrengthFighterImpl(Fighter copyFighter)
+    public AgilityFighterImpl(Fighter copyFighter)
     {
         super(copyFighter);
-        StrengthFighterImpl copyStrength = (StrengthFighterImpl) copyFighter;
-        this.strength = copyStrength.getPrimaryStat();
-        this.rage = copyStrength.getResource();
+        AgilityFighterImpl copyAgility = (AgilityFighterImpl) copyFighter;
+        this.agility = copyAgility.getPrimaryStat();
+        this.energy = copyAgility.getResource();
     }
 
-    public StrengthFighterImpl(Fighter copyFighter, String newName)
+    public AgilityFighterImpl(Fighter copyFighter, String newName)
     {
         super(copyFighter, newName);
-        StrengthFighterImpl copyStrength = (StrengthFighterImpl) copyFighter;
-        this.strength = copyStrength.getPrimaryStat();
-        this.rage = copyStrength.getResource();
+        AgilityFighterImpl copyAgility = (AgilityFighterImpl) copyFighter;
+        this.agility = copyAgility.getPrimaryStat();
+        this.energy = copyAgility.getResource();
+    }
+
+    public void regenEnergy()
+    {
+
     }
 
     protected Object clone() throws CloneNotSupportedException
@@ -51,11 +54,6 @@ public abstract class StrengthFighterImpl extends AbstractFighter implements Str
         }
     }
 
-    public void regenRage()
-    {
-//        rage.regenerate();
-    }
-
     public Fighter copy()
     {
         try {
@@ -68,19 +66,24 @@ public abstract class StrengthFighterImpl extends AbstractFighter implements Str
         }
     }
 
-    public int getPrimaryStat()
+    public boolean isMatchingWeapon()
     {
-        return strength;
+        return this.getWeapon().getType().contains("Agility");
     }
 
-    public void setPrimaryStat(int strength)
+    public int getPrimaryStat()
     {
-        this.strength = strength;
+        return agility;
+    }
+
+    public void setPrimaryStat(int newAgi)
+    {
+        this.agility = newAgi;
     }
 
     public Resource getResource()
     {
-        return rage;
+        return energy;
     }
 
     public void equipWeapon(Weapon weapon)
@@ -101,18 +104,14 @@ public abstract class StrengthFighterImpl extends AbstractFighter implements Str
         setAttack(getAttack() - getWeapon().getBonusAttack());
     }
 
-    public boolean isMatchingWeapon()
-    {
-        return this.getWeapon().getType().contains("Strength");
-    }
-
     private void setupAttack()
     {
-        super.setAttack(30.00 + strength-20);
+        super.setAttack(30.00 + agility-20);
     }
 
     public String toString()
     {
-        return (super.toString() + "\nStrength:" + strength + "\nEnergy:" + rage.getMaxValue() + "\n" + weaponToString());
+        return (super.toString() + "\nStrength:" + agility + "\nEnergy:" + energy.getMaxValue() + "\n" + weaponToString());
     }
+
 }

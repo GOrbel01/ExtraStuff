@@ -13,5 +13,5 @@ public interface Resource {
 
     void setCurrentValue(int newValue);
 
-    void spendResource(int placeholder);
+    void spendResource(int placeholder); //Come Back to type
 }

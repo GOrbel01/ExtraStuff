@@ -6,7 +6,7 @@ package george.sfg.resource;
 public class RageImpl extends AbstractResource implements Rage {
 
     private static final String name = "Rage";
-    private static int maxValue = 100;
+    private int maxValue = 100;
 
     public RageImpl()
     {

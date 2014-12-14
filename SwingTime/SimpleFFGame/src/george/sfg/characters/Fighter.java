@@ -49,4 +49,9 @@ public interface Fighter {
 
     List<Skill> getSkills();
 
+    boolean isMatchingWeapon();
+
+    String getIdentifier();
+
+    void setIdentifier(String newIdentifier);
 }

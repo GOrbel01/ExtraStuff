@@ -89,6 +89,13 @@ public abstract class MagicFighterImpl extends AbstractFighter implements MagicF
         setAttack(getAttack() + weapon.getBonusAttack());
     }
 
+
+    public boolean isMatchingWeapon()
+    {
+        return this.getWeapon().getType().contains("Magic");
+    }
+
+
     private void unEquipWeapon()
     {
         setPrimaryStat(getPrimaryStat() - getWeapon().getPrimaryStatBonus());

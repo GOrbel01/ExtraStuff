@@ -2,25 +2,19 @@ package george.sfg.userinterface;
 
 import george.sfg.characters.Fighter;
 import george.sfg.userinterface.framework.ControlledScreen;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
 
-import javax.swing.*;
-import javax.swing.event.MenuEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Squall on 04/12/2014.
@@ -30,72 +24,77 @@ public class BattleDisplayController implements ControlledScreen {
     private ScreensController myController;
 
     @FXML
-    MenuButton skillMenu = new MenuButton();
+    private MenuButton skillMenu = new MenuButton();
 
     @FXML
-    TextArea skill_description = new TextArea();
+    private Label turnLabel = new Label();
 
     @FXML
-    MenuItem skill1Info = new MenuItem();
+    private TextArea skill_description = new TextArea();
 
     @FXML
-    MenuItem skill2Info = new MenuItem();
+    private MenuItem skill1Info = new MenuItem();
 
     @FXML
-    MenuItem skill3Info = new MenuItem();
+    private MenuItem skill2Info = new MenuItem();
 
     @FXML
-    MenuItem skill4Info = new MenuItem();
+    private MenuItem skill3Info = new MenuItem();
 
     @FXML
-    TextField current_health = new TextField();
+    private MenuItem skill4Info = new MenuItem();
 
     @FXML
-    TextField player_name = new TextField();
+    private TextField current_health = new TextField();
 
     @FXML
-    TextField enemy_name = new TextField();
+    private TextField player_name = new TextField();
 
     @FXML
-    TextField enemy_health = new TextField();
-
-    MediaPlayer player;
+    private TextField enemy_name = new TextField();
 
     @FXML
-    Group player_controls = new Group();
+    private TextField enemy_health = new TextField();
+
+    private MediaPlayer player;
 
     @FXML
-    Button skill1 = new Button();
+    private Group player_controls = new Group();
 
     @FXML
-    Button skill2 = new Button();
+    private Button skill1 = new Button();
 
     @FXML
-    Button skill3 = new Button();
+    private Button skill2 = new Button();
 
     @FXML
-    Button skill4 = new Button();
+    private Button skill3 = new Button();
 
     @FXML
-    Button player_attack = new Button();
+    private Button skill4 = new Button();
 
     @FXML
-    TitledPane skillPane = new TitledPane();
+    private Button player_attack = new Button();
 
     @FXML
-    AnchorPane skillAnchor = new AnchorPane();
+    private TitledPane skillPane = new TitledPane();
 
     @FXML
-    Button dmg_test_button = new Button();
+    private AnchorPane skillAnchor = new AnchorPane();
 
     @FXML
-    ImageView player_image = new ImageView();
+    private Button dmg_test_button = new Button();
 
     @FXML
-    ImageView enemy_image = new ImageView();
+    private ImageView player_image = new ImageView();
 
-    List<Button> buttons = new ArrayList<>();
-    List<MenuItem> skilldescs = new ArrayList<>();
+    @FXML
+    private ImageView enemy_image = new ImageView();
+
+    private boolean isPlayerTurn;
+
+    private List<Button> buttons = new ArrayList<>();
+    private List<MenuItem> skilldescs = new ArrayList<>();
 
     public void initialize()
     {
@@ -109,7 +108,28 @@ public class BattleDisplayController implements ControlledScreen {
     public void onPressedSkillButton1(ActionEvent event)
     {
         System.out.println("SKIll1");
-        player_controls.setDisable(true);
+        postPlayerAttackEvent();
+    }
+
+    @FXML
+    public void onPressedSkillButton2(ActionEvent event)
+    {
+        System.out.println("SKIll2");
+        postPlayerAttackEvent();
+    }
+
+    @FXML
+    public void onPressedSkillButton3(ActionEvent event)
+    {
+        System.out.println("SKIll3");
+        postPlayerAttackEvent();
+    }
+
+    @FXML
+    public void onPressedSkillButton4(ActionEvent event)
+    {
+        System.out.println("SKIll4");
+        postPlayerAttackEvent();
     }
 
     @FXML
@@ -117,8 +137,7 @@ public class BattleDisplayController implements ControlledScreen {
     {
         System.out.println("DMG BUTTON");
         System.out.println(myController.getEnemyFighter().getHealth());
-        takeDamage(150, myController.getPlayerFighter());
-        updatePlayerHealth();
+        attack(150, myController.getPlayerFighter());
     }
 
     @FXML
@@ -137,26 +156,6 @@ public class BattleDisplayController implements ControlledScreen {
         myController = screenParent;
     }
 
-    public void takeDamage(int damage, Fighter fighter)
-    {
-        if (fighter.getHealth() - damage < 0)
-        {
-            fighter.setHealth(0);
-            updatePlayerHealth();
-            deathEvent();
-        }
-        else if (fighter.getHealth() - damage == 0)
-        {
-            fighter.setHealth(0);
-            updatePlayerHealth();
-            deathEvent();
-        }
-        else
-        {
-            fighter.setHealth(fighter.getHealth() - damage);
-        }
-    }
-
 
     private void deathEvent()
     {
@@ -166,52 +165,91 @@ public class BattleDisplayController implements ControlledScreen {
         myController.setScreen("screen5");
     }
 
-    private void updatePlayerHealth()
+    private void updateHealth(Fighter fighter)
     {
-        current_health.setText("" + myController.getPlayerFighter().getHealth());
-    }
-
-    private void updateEnemyHealth()
-    {
-        enemy_health.setText("" + myController.getEnemyFighter().getHealth());
+        if (fighter.getIdentifier().equals("AI"))
+        {
+            if (fighter.getHealth() <= 0)
+            {
+                fighter.setHealth(0);
+                enemy_health.setText("0");
+                System.out.println("Player Win");
+            }
+            else
+            {
+                enemy_health.setText("" + myController.getEnemyFighter().getHealth());
+            }
+        }
+        else if (fighter.getIdentifier().equals("Player"))
+        {
+            if (fighter.getHealth() <= 0)
+            {
+                fighter.setHealth(0);
+                current_health.setText("0");
+                deathEvent();
+            }
+            else
+            {
+                current_health.setText("" + myController.getPlayerFighter().getHealth());
+            }
+        }
     }
 
     @FXML
     public void playerAttackButton()
     {
-        playerAttack(140, myController.getEnemyFighter());
-        updateEnemyHealth();
+        attack(100, myController.getEnemyFighter());
+        postPlayerAttackEvent();
     }
 
-    private void playerAttack(int damage, Fighter fighter)
+    private void attack(int damage, Fighter fighter)
     {
-        if (fighter.getHealth() - damage < 0)
-        {
-            fighter.setHealth(0);
-            updateEnemyHealth();
-            System.out.println("You Win");
-            //playerWin
-        }
-        else if (fighter.getHealth() - damage == 0)
-        {
-            fighter.setHealth(0);
-            updateEnemyHealth();
-            System.out.println("You Win");
-            //playerWin
-        }
-        else
-        {
-            fighter.setHealth(fighter.getHealth() - damage);
-        }
+        fighter.setHealth(fighter.getHealth() - damage);
+        updateHealth(fighter);
     }
 
-    public void setupMusic()
+    private void enemyAttack()
+    {
+        System.out.println("Enemy Attacking");
+        attack(100, myController.getPlayerFighter());
+        enemyPostAttackEvent();
+    }
+
+    private void enemyPostAttackEvent()
+    {
+        isPlayerTurn = true;
+        setTextLabel(isPlayerTurn);
+        player_controls.setDisable(false);
+    }
+
+    //Currently Only Disables Player Controls Until Enemies Go.
+    private void postPlayerAttackEvent()
+    {
+        player_controls.setDisable(true);
+        isPlayerTurn = false;
+        setTextLabel(isPlayerTurn);
+        enemyAttack();
+    }
+
+    private void setupMusic()
     {
         System.out.println("Music");
         Media medMsg = new Media(ScreensFramework.class.getClassLoader().getResource("george/sfg/userinterface/resources/music/Those Who Fight Further.mp3").toString());
         player = new MediaPlayer(medMsg);
         player.play();
         System.out.println("Leaving Msg thread.\n");
+    }
+
+    public void setTextLabel(boolean turn)
+    {
+        if (turn)
+        {
+            turnLabel.setText("Player Turn");
+        }
+        else
+        {
+            turnLabel.setText("Enemy Label");
+        }
     }
 
     Task secondInitTask = new Task<Void>() {
@@ -233,6 +271,8 @@ public class BattleDisplayController implements ControlledScreen {
 
     Task initTask = new Task<Void>() {
         @Override public Void call() {
+            isPlayerTurn = true;
+            setTextLabel(isPlayerTurn);
             buttons.add(skill1);
             buttons.add(skill2);
             buttons.add(skill3);
@@ -249,10 +289,10 @@ public class BattleDisplayController implements ControlledScreen {
             }
             System.out.println("HERE!!!");
             setupMusic();
+            Thread.currentThread().interrupt();
             Thread thr2 = new Thread(secondInitTask);
             thr2.setName("Init Second Battle");
             thr2.start();
-
             return null;
         }
     };

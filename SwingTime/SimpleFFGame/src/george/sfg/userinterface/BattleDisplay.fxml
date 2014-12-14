@@ -17,12 +17,12 @@
                <children>
                   <Group fx:id="player_controls">
                      <children>
-                        <Button fx:id="skill2" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" text="Skill 2" textFill="WHITE">
+                        <Button fx:id="skill2" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton2" text="Skill 2" textFill="WHITE">
                            <padding>
                               <Insets left="2.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="skill3" blendMode="DARKEN" contentDisplay="CENTER" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton1" text="Skill 3" textFill="WHITE">
+                        <Button fx:id="skill3" blendMode="DARKEN" contentDisplay="CENTER" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton3" text="Skill 3" textFill="WHITE">
                            <padding>
                               <Insets left="2.0" />
                            </padding>
@@ -32,7 +32,7 @@
                               <Insets left="2.0" right="1.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="skill4" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" text="Skill 4" textFill="WHITE">
+                        <Button fx:id="skill4" blendMode="DARKEN" contentDisplay="CENTER" layoutX="47.0" layoutY="42.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#onPressedSkillButton4" text="Skill 4" textFill="WHITE">
                            <padding>
                               <Insets left="2.0" />
                            </padding>
@@ -67,5 +67,6 @@
          </image>
       </ImageView>
       <Button fx:id="player_attack" layoutX="37.0" layoutY="351.0" mnemonicParsing="false" onAction="#playerAttackButton" text="Attack" />
+      <Label fx:id="turnLabel" layoutX="291.0" layoutY="61.0" text="Label" wrapText="true" />
    </children>
 </AnchorPane>

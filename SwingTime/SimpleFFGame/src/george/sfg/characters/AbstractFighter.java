@@ -24,6 +24,7 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
     private Image image;
     private Weapon weapon;
     private String type;
+    private String identifier;
 
     public AbstractFighter(String name, int health, int speed, String resource)
     {
@@ -32,6 +33,7 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
         this.health = health;
         this.speed = speed;
         this.weapon = null;
+        this.identifier = "AI"; //Default. Can be AI or Player
     }
 
     public AbstractFighter(Fighter copyFighter)
@@ -188,6 +190,16 @@ public abstract class AbstractFighter implements Fighter, Cloneable{
     public Image getImage()
     {
         return image;
+    }
+
+    public String getIdentifier()
+    {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier)
+    {
+        this.identifier = identifier;
     }
 
 }
