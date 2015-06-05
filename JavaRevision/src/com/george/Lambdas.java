@@ -1,6 +1,8 @@
-package com.george.practice;
+package com.george;
 
+import java.util.Optional;
 import java.util.function.Predicate;
+import com.george.GenericPredOwn;
 
 /**
  * Created by Cloud on 28/05/2015.

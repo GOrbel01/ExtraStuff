@@ -1,4 +1,4 @@
-package com.george.practice;
+package com.george;
 
 /**
  * Created by Cloud on 28/05/2015.
