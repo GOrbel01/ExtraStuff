@@ -15,7 +15,7 @@ public class CompareTest {
         List<String> strs = Arrays.asList("Cloud", "Squall", "Zidane", "Tidus", "Tifa", "Rinoa", "Garnet", "Yuna");
 
         fighters[0] = new FighterImpl("Cloud", 12, 19);
-        fighters[1] = new FighterImpl("Squall", 14, 27);
+        fighters[1] = new FighterImpl("Squall", 14, 17);
         fighters[2] = new FighterImpl("Zidane", 15, 25);
         fighters[3] = new FighterImpl("Tidus", 15, 22);
         fighters[4] = new FighterImpl("Tifa", 16, 17);
@@ -36,6 +36,8 @@ public class CompareTest {
         strs.sort(comp);
         Functions.printList(strs);
         sort(fighters);
+        Fighter stronger = TestFighterStrength.compareFighters(fighters[0], fighters[1]);
+        System.out.println("Stronger: " + stronger.getName());
     }
 
     public static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
