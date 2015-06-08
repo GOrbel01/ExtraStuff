@@ -3,6 +3,7 @@ package com.george.collectionops;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Created by Cloud on 06/06/2015.
@@ -31,6 +32,7 @@ public class SetOps {
         strSet.add("Test");
         printSet(strSet);
         strSet.add("Test");
+        strSet.removeIf((s) -> s.length() > 4);
         printSet(strSet);
     }
 

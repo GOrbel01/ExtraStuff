@@ -13,6 +13,7 @@ public class ListOps {
         List<String> testList = new ArrayList<String>();
         testList.addAll(strs);
         testList.add(3, "Aeris");
+        testList.remove(2);
         testList.iterator().forEachRemaining((s) -> System.out.println(s));
     }
 }
